@@ -20,7 +20,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = 'Email tidak valid.'
 if (strlen($password) < 6) $errors[] = 'Password minimal 6 karakter.';
 if ($password !== $password2) $errors[] = 'Password tidak sama.';
 
-// Cek email/user udh dipakai
+// cek email/user udh dipakai
 $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ? OR username = ?");
 $stmt->execute([$email, $username]);
 if ($stmt->fetch()) $errors[] = 'Email atau username sudah terpakai.';
