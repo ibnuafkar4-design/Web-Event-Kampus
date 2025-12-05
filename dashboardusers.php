@@ -1,4 +1,4 @@
-KO<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -8,6 +8,8 @@ KO<!DOCTYPE html>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
     <link href="dashboardusers.css" rel="stylesheet">
+
+
 </head>
 
 <body>
@@ -23,34 +25,27 @@ KO<!DOCTYPE html>
                 <button class="btn btn-outline-light" type="submit">Search</button>
             </div>
         </div>
-        <a class="navbar-brand" href="home.html">Event Polibatam</a>
-        </div>
-    </nav>
-
-    <!-- Sidebar -->
-    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasSidebar">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title text-warning"><i class="fa-solid fa-bolt me-2"></i>Event Polibatam</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
-        </div>
-        <div class="offcanvas-body">
-            <ul class="nav flex-column fs-5">
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="nav flex-rows fs-7">
                 <li class="nav-item mb-2">
-                    <a class="nav-link text-light" href="home.html"><i class="fa-solid fa-house"></i> Home</a>
+                    <a class="nav-link text-light" href="home.html"> Home</a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a class="nav-link text-light" href="#events"><i class="fa-solid fa-calendar-days"></i> Events</a>
+                    <a class="nav-link text-light" href="#events"> Events</a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a class="nav-link text-light" href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a>
+                    <a class="nav-link text-light" href="#contact"> Contact</a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a class="nav-link text-light" href="login.html"><i class="fa-solid fa-circle-info"></i> Logout</a>
+                    <a class="nav-link text-light" href="login.html">Logout</a>
                 </li>
             </ul>
-        </div>
-    </div>
 
+                <a class="navbar-brand" href="home.html">Event Polibatam</a>
+        
+        </div>
+    </nav>
     <!-- Carousel -->
     <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner" id="carouselInner"></div>

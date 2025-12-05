@@ -5,6 +5,7 @@
     }
     .navbar {
       background-color: #101a39;
+      text-align: left;
     }
     .navbar-brand {
       color: #ff3cac;
@@ -28,7 +29,7 @@
     }
     .carousel-item img {
       height: 90vh;
-      object-fit: cover;
+      object-fit: contain;
       filter: brightness(60%);
     }
 
