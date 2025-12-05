@@ -1,6 +1,7 @@
 <?php
+
 require_once 'config.php';
-require 'vendor/autoload.php'; // PHPMailer
+require_once realpath(__DIR__ . '/../vendor/autoload.php');
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -16,7 +17,7 @@ function generateToken($length = 64) {
 function sendResetEmail($toEmail, $token) {
     $mail = new PHPMailer(true);
     try {
-        // server settings
+        //server settings
         $mail->isSMTP();
         $mail->Host = SMTP_HOST;
         $mail->SMTPAuth = true;
@@ -29,10 +30,10 @@ function sendResetEmail($toEmail, $token) {
         $mail->setFrom(SMTP_USER, 'No Reply');
         $mail->addAddress($toEmail);
 
-        // content
+        //content di link email
         $mail->isHTML(true);
         $mail->Subject = 'Password reset request';
-        $resetLink = BASE_URL . '/reset.php?token=' . urlencode($token);
+        $resetLink = BASE_URL . '/public/reset.php?token=' . urlencode($token);
         $mail->Body = "Klik link berikut untuk mereset password Anda: <a href=\"$resetLink\">$resetLink</a>.<br>Link berlaku 1 jam.";
 
         $mail->send();

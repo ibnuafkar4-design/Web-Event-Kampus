@@ -1,12 +1,8 @@
 <?php
-require_once 'config.php';
-
-require_once 'functions.php';
-
-
+require_once __DIR__ . '/../app/config.php';
+require_once __DIR__ . '/../app/functions.php';
 
 $errors = [];
-
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $username = e($_POST['username'] ?? '');
@@ -20,12 +16,12 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = 'Email tidak valid.'
 if (strlen($password) < 6) $errors[] = 'Password minimal 6 karakter.';
 if ($password !== $password2) $errors[] = 'Password tidak sama.';
 
-// cek email/user udh dipakai
+//cek email/user udh dipakai
 $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ? OR username = ?");
 $stmt->execute([$email, $username]);
 if ($stmt->fetch()) $errors[] = 'Email atau username sudah terpakai.';
 
-// gk ada error bisa disimpan
+//gk ada error, bisa disimpan
 if (empty($errors)) {
 $hash = password_hash($password, PASSWORD_DEFAULT);
 $role = 'user';
@@ -48,7 +44,7 @@ exit;
     <title>Register</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
-    <link href="logregotplupapw.css" rel="stylesheet" />
+    <link href="assets/logregotplupapw.css" rel="stylesheet" />
 </head>
 
 
@@ -68,7 +64,7 @@ exit;
         </form>
 
         <p class="text-center mt-3">
-            <a href="login.html" class="link-light">Sudah punya akun?</a>
+            <a href="login.php" class="link-light">Sudah punya akun?</a>
         </p>
     </div>
 

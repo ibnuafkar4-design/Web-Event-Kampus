@@ -1,9 +1,3 @@
-<?php
-
-require_once 'config.php';
-
-require 'auth_middleware.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,7 +59,7 @@ require 'auth_middleware.php';
     <div class="overlay"></div>
 
     <div class="login-btn">
-        <a href="login.html" class="btn btn-login"><i class="fa-solid fa-right-to-bracket me-2"></i>Log In</a>
+        <a href="login.php" class="btn btn-login"><i class="fa-solid fa-right-to-bracket me-2"></i>Log In</a>
     </div>
 
     <div class="main-content">

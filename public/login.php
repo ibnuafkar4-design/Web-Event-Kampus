@@ -1,17 +1,17 @@
 <?php
-require_once 'config.php';
-require_once 'functions.php';
+require_once __DIR__ . '/../app/config.php';
+require_once __DIR__ . '/../app/functions.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 
 $error = '';
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-$username = e($_POST['username'] ?? ''); // username atau email
+$username = e($_POST['username'] ?? ''); 
 $password = $_POST['password'] ?? '';
 
 
-// Ambil user berdasarkan username atau email
+//ambil user berdasarkan email atau username
 $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ? OR username = ? LIMIT 1");
 $stmt->execute([$username, $username]);
 $user = $stmt->fetch();
@@ -24,7 +24,7 @@ $_SESSION['username'] = $user['username'];
 $_SESSION['role'] = $user['role'];
 
 
-// Arahkan sesuai role
+//arahkan berdasarkan role
 if ($user['role'] === 'admin') {
 header('Location: admindashboard.php');
 exit;
@@ -49,7 +49,7 @@ $error = 'Login gagal: email/username atau password salah.';
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
-    <link href="logregotplupapw.css" rel="stylesheet" />
+    <link href="assets/logregotplupapw.css" rel="stylesheet" />
 </head>
 
 <body>

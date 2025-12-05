@@ -1,34 +1,34 @@
 <?php
-require_once 'config.php';
-require_once 'functions.php';
+require_once __DIR__ . '/../app/config.php';
+require_once __DIR__ . '/../app/functions.php';
 
 $msg = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // Ambil email
+    //ambil email
     $email = e($_POST['email'] ?? '');
 
-    // Validasi email
+    //validasi email
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo "<script>alert('Masukkan email yang valid.');</script>";
     } else {
 
-        // Cek apakah email terdaftar
+        //cek user berdasarkan email
         $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ? LIMIT 1");
         $stmt->execute([$email]);
         $user = $stmt->fetch();
 
         if ($user) {
-            // Buat token
+            //buat token
             $token = generateToken(64);
             $expiry = date('Y-m-d H:i:s', time() + 3600);
 
-            // Simpan token
+            //simpan token
             $stmt = $pdo->prepare("UPDATE users SET reset_token = ?, reset_expiry = ? WHERE id = ?");
             $stmt->execute([$token, $expiry, $user['id']]);
 
-            // Kirim email
+            //kirim email
             if (sendResetEmail($email, $token)) {
                 echo "<script>alert('Token reset password telah dikirim ke email Anda.');</script>";
             } else {
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
-    <link href="logregotplupapw.css" rel="stylesheet" />
+    <link href="assets/logregotplupapw.css" rel="stylesheet" />
 </head>
 
 <body>
