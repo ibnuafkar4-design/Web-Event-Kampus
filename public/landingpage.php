@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,9 +8,101 @@
     <title>Explore. Connect. Create.</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
-    <link href="landingpage.css" rel="stylesheet" />
 </head>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0b1b3a;
+  color: white;
+  overflow: hidden;
+  font-family: "Poppins", sans-serif;
+}
 
+.poster-loop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  display: flex;
+  animation: scrollPosters 40s linear infinite;
+  z-index: 0;
+  opacity: 0.4;
+}
+.poster-loop img {
+  height: 100vh;
+  width: auto;
+  object-fit: cover;
+  margin-right: 10px;
+  border-radius: 8px;
+}
+
+@keyframes scrollPosters {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.overlay {
+  position: absolute !important;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to top,rgba(11, 27, 58, 0.9),rgba(11, 27, 58, 0.6));
+  z-index: 1;
+}
+
+.main-content {
+  position: relative;
+  z-index: 2;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.main-content img {
+  width: 100px;
+  margin-bottom: 15px;
+  filter: brightness(1.2);
+}
+
+.main-content h1 {
+  font-weight: 800;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  margin-bottom: 10px;
+}
+
+.main-content p {
+  font-size: 1.1rem;
+  max-width: 700px;
+  color: #dcdcdc;
+}
+.btn {
+  background-color: #ff3cac;
+  color: white;
+  border-radius: 30px;
+  padding: 8px 20px;
+  font-weight: 600;
+  transition: 0.3s;
+  top: 20px;
+  right: 30px;
+  z-index: 3;
+}
+
+
+.btn:hover {
+  background-color: #0b1b3a;
+  color: #ff3cac;
+}
+
+</style>
 <body>
     <!-- Loop Background -->
     <div class="poster-loop">
@@ -58,20 +151,17 @@
 
     <div class="overlay"></div>
 
-    <div class="login-btn">
-        <a href="login.php" class="btn btn-login"><i class="fa-solid fa-right-to-bracket me-2"></i>Log In</a>
-    </div>
-
     <div class="main-content">
         <img src="https://www.polibatam.ac.id/wp-content/uploads/2024/01/cropped-cropped-01_Logo_1_Utama_Polibatam_Vertikal@2x.png"
             alt="Polibatam Logo" />
         <h1>Web Event Polibatam Official</h1>
         <p>
             Politeknik Negeri Batam adalah kampus vokasi unggulan di Kepulauan Riau
-            yang berfokus pada pendidikan berbasis industri dan teknologi terapan.Di
-            sini, mahasiswa tidak hanya belajar teori — tapi juga menciptakan solusi
-            nyata melalui kolaborasi, inovasi, dan semangat untuk berkarya.
+            yang berfokus pada pendidikan berbasis industri dan teknologi terapan.
+            Di sini, mahasiswa tidak hanya belajar teori tapi juga menciptakan
+            solusi nyata melalui kolaborasi, inovasi, dan semangat untuk berkarya.
         </p>
+        <a href="dashboardusers.php" id="button" class="btn btn-primary btn-lg mt-3">Lihat Events</a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

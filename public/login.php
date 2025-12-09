@@ -1,68 +1,100 @@
 <?php
-require_once __DIR__ . '/../app/config.php';
-require_once __DIR__ . '/../app/functions.php';
-require_once __DIR__ . '/../vendor/autoload.php';
+session_start();
+include __DIR__ . '/../app/koneksi2.php'; 
 
-
-$error = '';
+$error = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-$username = e($_POST['username'] ?? ''); 
-$password = $_POST['password'] ?? '';
 
+    if (!isset($_POST['username']) || !isset($_POST['password'])) {
+        $error = "Form tidak lengkap.";
+    } else {
 
-//ambil user berdasarkan email atau username
-$stmt = $pdo->prepare("SELECT * FROM users WHERE email = ? OR username = ? LIMIT 1");
-$stmt->execute([$username, $username]);
-$user = $stmt->fetch();
+        $username = mysqli_real_escape_string($koneksi, $_POST['username']);
+        $password = mysqli_real_escape_string($koneksi, $_POST['password']);
 
+        $sql = "SELECT * FROM admin WHERE username='$username' AND password='$password'";
+        $data = mysqli_query($koneksi, $sql);
 
-if ($user && password_verify($password, $user['password'])) {
-session_regenerate_id(true);
-$_SESSION['user_id'] = $user['id'];
-$_SESSION['username'] = $user['username'];
-$_SESSION['role'] = $user['role'];
+        if (!$data) {
+            die("Query Error: " . mysqli_error($koneksi));
+        }
 
-
-//arahkan berdasarkan role
-if ($user['role'] === 'admin') {
-header('Location: admindashboard.php');
-exit;
-} else {
-header('Location: dashboardusers.php');
-exit;
+        if (mysqli_num_rows($data) > 0) {
+            $row = mysqli_fetch_assoc($data);
+            $_SESSION['username'] = $row['username'];
+            header("Location: /PBL/admindashboard.php");
+            exit();
+        } else {
+            $error = "Username atau password salah.";
+        }
+    }
 }
-
-
-} else {
-$error = 'Login gagal: email/username atau password salah.';
-}
-}
-
-
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="id">
 
 <head>
     <meta charset="UTF-8" />
-    <title>Login</title>
+    <title>Login Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
     <link href="assets/logregotplupapw.css" rel="stylesheet" />
 </head>
+<style>
 
+body {
+  background: linear-gradient(135deg, #0b1b3a, #1a2b5e);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  background-color: #14204b;
+  border: none;
+  width: 380px;
+  box-shadow: 0 0 20px rgba(255, 60, 172, 0.4);
+}
+
+.form-control {
+  background-color: #ffffff;
+  border: none;
+  color: rgb(0, 0, 0);
+}
+
+.form-control:focus {
+  box-shadow: 0 0 10px #ff3cac;
+  background-color: #fbfbfb;
+}
+
+.btn-custom {
+  background: #ff3cac;
+  color: white;
+  border: none;
+  transition: 0.3s;
+}
+
+.btn-custom:hover {
+  background: #ff5fb2;
+}
+
+
+</style>
 <body>
     <div class="card p-4 text-light">
         <h3 class="text-center mb-3">
             <i class="fa-solid fa-bolt text-warning me-2"></i>Polibatam Event
         </h3>
-        <?php if ($error): ?>
-        <div class="alert alert-danger"><?= $error ?></div>
-        <?php endif; ?>
         <form id="loginForm" method="POST" action="login.php">
             <h5 class="text-center mb-3">
-                <i class="fa-solid fa-right-to-bracket me-2"></i>Login
+                <i class="fa-solid fa-right-to-bracket me-2"></i>Login Admin
             </h5>
             <input type="text" name="username" class="form-control mb-3" id="username" placeholder="Username atau Email"
                 required />
@@ -71,10 +103,6 @@ $error = 'Login gagal: email/username atau password salah.';
             <button type="submit" class="btn btn-custom w-100 mb-3">Masuk</button>
         </form>
 
-        <p class="text-center">
-            <a href="register.php" class="link-light">Daftar |</a>
-            <a href="lupapw.php" class="link-light">Lupa Password?</a>
-        </p>
     </div>
 </body>
 
