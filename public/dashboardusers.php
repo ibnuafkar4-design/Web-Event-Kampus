@@ -1,5 +1,7 @@
 <?php
-include 'koneksi.php';
+$koneksi = mysqli_connect("localhost", "root", "", "pbl");
+
+$query = mysqli_query($koneksi, "SELECT * FROM admin ORDER BY id DESC");
 ?>
 
 <!DOCTYPE html>
@@ -54,8 +56,9 @@ include 'koneksi.php';
         <div class="scroll-wrapper" id="eventScroll"></div>
     </section>
 
+
     <!-- Modal -->
-    <div class="modal fade" id="detailModal" tabindex="-1" data-bs-toggle="heroCarousel" aria-hidden="true">
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content bg-dark text-light">
                 <div class="modal-header border-0">
@@ -64,13 +67,13 @@ include 'koneksi.php';
                 </div>
                 <div class="modal-body text-center">
                     <img id="detailImg" src="" class="img-fluid rounded mb-3" style="height:300px;object-fit:cover;">
-                    <p><strong><i class="fa-regular fa-calendar"></i> Tanggal:</strong> <span id="detailDate"></span>
+                    <p><strong><i class="fa-regular fa-calendar"></i> Tanggal:</strong> <?php echo $data['tanggal']; ?>
                     </p>
-                    <p><strong><i class="fa-regular fa-clock"></i> Waktu:</strong> <span id="detailTime"></span></p>
-                    <p><strong><i class="fa-solid fa-location-dot"></i> Tempat:</strong> <span id="detailPlace"></span>
+                    <p><strong><i class="fa-regular fa-clock"></i> Waktu:</strong> <?php echo $data['waktu']; ?></p>
+                    <p><strong><i class="fa-solid fa-location-dot"></i> Tempat:</strong> <?php echo $data['tempat']; ?>
                     </p>
                     <p id="detailDesc"></p>
-                    <button id="btnDaftar" class="btn btn-custom mt-2">Daftar Event</button>
+
                 </div>
             </div>
         </div>
@@ -89,7 +92,7 @@ include 'koneksi.php';
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="dashboardusers.js"></script>
+    <script src="dashboardusers2.js"></script>
 </body>
 
 </html>
