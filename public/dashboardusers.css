@@ -11,22 +11,7 @@
       color: #ff3cac;
       font-weight: bold;
     }
-    .offcanvas {
-      background-color: #101a39;
-    }
-    .offcanvas a {
-      color: #ccc;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 0;
-      transition: 0.2s;
-    }
-    .offcanvas a:hover {
-      color: #ff3cac;
-      padding-left: 5px;
-    }
+
     .carousel-item img {
       height: 90vh;
       object-fit: contain;
