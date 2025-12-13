@@ -34,7 +34,6 @@ $query = mysqli_query($koneksi, "SELECT * FROM admin ORDER BY id DESC");
             <a class="navbar-brand" href="home.html"> Home</a>
             <a class="navbar-brand" href="#events"> Events</a>
             <a class="navbar-brand" href="#contact"> Contact</a>
-            <a href="logout.php" class="navbar-brand" href="login.html">Logout</a>
             <img src="logopolibatam.jpg" alt="Logo" width="40" height="40" class="d-inline-block align-text-top">
         
         </div>
