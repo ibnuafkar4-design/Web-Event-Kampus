@@ -24,9 +24,8 @@ $query = mysqli_query($koneksi, "SELECT * FROM admin ORDER BY id DESC");
     <nav class="navbar navbar-dark navbar-expand sticky-top">
         <div class="container-fluid">
             <div class="d-flex me-auto" id="searchContainer" role="search">
-                <input class="form-control me-2" type="text" name="searchBar" id="searchBar"
-                    placeholder="Search for a event" aria-label="Search">
-                <button class="btn btn-outline-light" type="submit">Search</button>
+                <input class="form-control me-2" type="text" name="searchBar" id="searchBar" placeholder="Search for a event" aria-label="Search">
+                <button class="btn btn-outline-light" type="button" id="btnSearch">Search</button>
             </div>
         </div>
         
