@@ -3,11 +3,11 @@ include __DIR__ . "/../app/koneksi2.php";
 
 
 
-/* ambil bulan & tahun dari URL */
+// ambil bulan dan tahun dari URLekarang
 $bulan = $_GET['bulan'] ?? date('m');
 $tahun = $_GET['tahun'] ?? date('Y');
 
-/* normalisasi bulan & tahun */
+//batasan bulan dari 1-12
 if ($bulan < 1) {
     $bulan = 12;
     $tahun--;
@@ -17,7 +17,7 @@ if ($bulan > 12) {
     $tahun++;
 }
 
-/* ambil data event */
+//ambil data dari database
 $data_event = [];
 $query_event = mysqli_query(
     $koneksi,
@@ -31,7 +31,7 @@ while ($baris_event = mysqli_fetch_assoc($query_event)) {
     $data_event[$tanggal_event][] = $baris_event;
 }
 
-/* data kalender */
+//data kalender 
 $hari_pertama = date('w', strtotime("$tahun-$bulan-01"));
 $jumlah_hari  = cal_days_in_month(
     CAL_GREGORIAN,
@@ -143,12 +143,12 @@ $jumlah_hari  = cal_days_in_month(
 
             <tr>
                 <?php
-/* spasi kosong sebelum tanggal 1 */
+// space sebelum hari pertama
 for ($i = 0; $i < $hari_pertama; $i++) {
     echo "<td></td>";
 }
 
-/* loop tanggal */
+// loop tanggal
 for ($tanggal = 1; $tanggal <= $jumlah_hari; $tanggal++) {
 
     echo "<td><b>$tanggal</b>";
@@ -166,7 +166,7 @@ for ($tanggal = 1; $tanggal <= $jumlah_hari; $tanggal++) {
 
     echo "</td>";
 
-    /* pindah baris tiap minggu */
+    //tiap 1 minggu pindah baris
     if (($tanggal + $hari_pertama) % 7 == 0) {
         echo "</tr><tr>";
     }
