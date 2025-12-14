@@ -43,74 +43,106 @@ $jumlah_hari  = cal_days_in_month(
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-<meta charset="UTF-8">
-<title>Kalender Event Kampus</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<style>
-h3 {
-    color : #ff3cac;
-    text-shadow: 0 0 10px #ff3cac;
-}
+    <meta charset="UTF-8">
+    <title>Kalender Event Kampus</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    a {
+        text-shadow: 0 0 10px #ff3cac;
+    }
 
-body {
-    background: #14204b;
-    font-family: Arial, sans-serif;
-}
+    .navbar {
+        background-color: #101a39;
+        text-align: left;
+    }
 
-td {
-    height: 130px;
-    vertical-align: top;
-}
+    .navbar-brand {
+        color: #ff3cac;
+        font-weight: bold;
+    }
 
-strong{
-    color : #ff3cac;
-    text-shadow : 0 0 10px #ff3cac;
-}
-.event-kampus {
-    background: #14204b;
-    color: #fff;
-    font-size: 12px;
-    max-height: 50px;
+    h3 {
+        color: #ff3cac;
+        text-shadow: 0 0 10px #ff3cac;
+    }
 
-}
-</style>
+    body {
+        background: #14204b;
+        font-family: Arial, sans-serif;
+    }
+
+    td {
+        height: 130px;
+        vertical-align: top;
+    }
+
+    strong {
+        color: #ff3cac;
+        text-shadow: 0 0 10px #ff3cac;
+    }
+
+    .event-kampus {
+        background: #14204b;
+        color: #fff;
+        font-size: 12px;
+        max-height: 50px;
+
+    }
+    </style>
 </head>
 
 <body>
-<div class="container mt-4">
+    <nav class="navbar navbar-dark navbar-expand sticky-top">
+        <div class="container-fluid">
+            <div class="d-flex me-auto" id="searchContainer" role="search">
+                <input class="form-control me-2" type="text" name="searchBar" id="searchBar"
+                    placeholder="Search for a event" aria-label="Search">
+                <button class="btn btn-outline-light" type="button" id="btnSearch">Search</button>
+            </div>
+        </div>
 
-<h3 class="text-center">Kalender Event Kampus</h3>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <a class="navbar-brand" href="kalender.php"> Kalender</a>
+            <a class="navbar-brand" href="landingpage.php"> Home</a>
+            <a class="navbar-brand" href="dashboardusers.php"> Events</a>
+            <a class="navbar-brand" href="#contact"> Contact</a>
+            <img src="logopolibatam.jpg" alt="Logo" width="40" height="40" class="d-inline-block align-text-top">
 
-<!-- Navigasi bulan -->
-<div class="d-flex justify-content-between mb-3">
-<a class="btn btn-sm btn-secondary"
+        </div>
+    </nav>
+    <div class="container mt-4">
 
-href="?bulan=<?= $bulan - 1 ?>&tahun=<?= $tahun ?>">
-‹ Sebelumnya</a>
 
-<strong>
-<?= date('F Y', strtotime("$tahun-$bulan-01")) ?>
-</strong>
+        <h3 class="text-center">Kalender Event Kampus</h3>
 
-<a class="btn btn-sm btn-secondary"
-href="?bulan=<?= $bulan + 1 ?>&tahun=<?= $tahun ?>">
-Berikutnya ›</a>
-</div>
+        <!-- Navigasi bulan -->
+        <div class="d-flex justify-content-between mb-3">
+            <a class="btn btn-sm btn-secondary" href="?bulan=<?= $bulan - 1 ?>&tahun=<?= $tahun ?>">
+                ‹ Sebelumnya</a>
 
-<table class="table table-bordered text-center">
-<tr>
-<th>Minggu</th>
-<th>Senin</th>
-<th>Selasa</th>
-<th>Rabu</th>
-<th>Kamis</th>
-<th>Jumat</th>
-<th>Sabtu</th>
-</tr>
+            <strong>
+                <?= date('F Y', strtotime("$tahun-$bulan-01")) ?>
+            </strong>
 
-<tr>
-<?php
+            <a class="btn btn-sm btn-secondary" href="?bulan=<?= $bulan + 1 ?>&tahun=<?= $tahun ?>">
+                Berikutnya ›</a>
+        </div>
+
+        <table class="table table-bordered text-center">
+            <tr>
+                <th>Minggu</th>
+                <th>Senin</th>
+                <th>Selasa</th>
+                <th>Rabu</th>
+                <th>Kamis</th>
+                <th>Jumat</th>
+                <th>Sabtu</th>
+            </tr>
+
+            <tr>
+                <?php
 /* spasi kosong sebelum tanggal 1 */
 for ($i = 0; $i < $hari_pertama; $i++) {
     echo "<td></td>";
@@ -141,9 +173,10 @@ for ($tanggal = 1; $tanggal <= $jumlah_hari; $tanggal++) {
     
 }
 ?>
-</tr>
-</table>
+            </tr>
+        </table>
 
-</div>
+    </div>
 </body>
+
 </html>

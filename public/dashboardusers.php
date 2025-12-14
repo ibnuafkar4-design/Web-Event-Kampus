@@ -1,5 +1,5 @@
 <?php
-$koneksi = mysqli_connect("localhost", "root", "", "pbl");
+$koneksi = mysqli_connect("localhost", "root", "Rickyarian228", "pbl");
 
 $query = mysqli_query($koneksi, "SELECT * FROM admin ORDER BY id DESC");
 ?>
@@ -24,17 +24,19 @@ $query = mysqli_query($koneksi, "SELECT * FROM admin ORDER BY id DESC");
     <nav class="navbar navbar-dark navbar-expand sticky-top">
         <div class="container-fluid">
             <div class="d-flex me-auto" id="searchContainer" role="search">
-                <input class="form-control me-2" type="text" name="searchBar" id="searchBar" placeholder="Search for a event" aria-label="Search">
+                <input class="form-control me-2" type="text" name="searchBar" id="searchBar"
+                    placeholder="Search for a event" aria-label="Search">
                 <button class="btn btn-outline-light" type="button" id="btnSearch">Search</button>
             </div>
         </div>
-        
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <a class="navbar-brand" href="home.html"> Home</a>
-            <a class="navbar-brand" href="#events"> Events</a>
+            <a class="navbar-brand" href="kalender.php"> Kalender</a>
+            <a class="navbar-brand" href="landingpage.php"> Home</a>
+            <a class="navbar-brand" href="dashboardusers.php"> Events</a>
             <a class="navbar-brand" href="#contact"> Contact</a>
             <img src="logopolibatam.jpg" alt="Logo" width="40" height="40" class="d-inline-block align-text-top">
-        
+
         </div>
     </nav>
     <!-- Carousel -->
@@ -68,7 +70,8 @@ $query = mysqli_query($koneksi, "SELECT * FROM admin ORDER BY id DESC");
                     <p><strong><i class="fa-regular fa-calendar"></i> Tanggal:</strong> <span id="detailDate"></span>
                     </p>
                     <p><strong><i class="fa-regular fa-clock"></i> Waktu:</strong> <span id="detailTime"></span></p>
-                    <p><strong><i class="fa-solid fa-location-dot"></i> Tempat:</strong> <span id="detailPlace"></span></p>
+                    <p><strong><i class="fa-solid fa-location-dot"></i> Tempat:</strong> <span id="detailPlace"></span>
+                    </p>
                     <p id="detailDesc"></p>
 
                 </div>
