@@ -7,15 +7,23 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://kit.font-awesome.com/a2e0e6ad18.js" crossorigin="anonymous"></script>
 <style>
-body { background-color: #0b1b3a; }
+body { background-color: #0b1b3a; 
+}
+/* Samain ukuran gambar di tabel */
+.table img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+    background-color: transparent;
+}
 </style>
 </head>
 <body class="text-light">
     <!-- Navbar -->
     <nav class="navbar navbar-dark navbar-expand sticky-top">
         <div class="container-fluid">
-            <button class="btn btn-outline-light -2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar"><i
-                    class="fa-solid fa-bars"></i></button>
+            
         </div>
     </nav>
     
@@ -37,6 +45,8 @@ body { background-color: #0b1b3a; }
         </div>
     </div>
 
+    <button class="btn btn-outline-light -2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar">
+        <i class="fa-solid fa-bars"></i></button>
 <div class="container py-4">
     <h2 class="text-center mb-4 text-warning"><i class="fa fa-calendar"></i> Admin Dashboard</h2>
 
@@ -78,7 +88,9 @@ body { background-color: #0b1b3a; }
                     <td><?= $data['waktu']; ?></td>
                     <td><?= $data['tempat']; ?></td>
                     <td><?= $data['deskripsi']; ?></td>
-                    <td><img src="upload"<?= $data['gambar']; ?>" width="80"></td>
+                    <td>
+                        <img src="upload/<?= $data['gambar']; ?>" class="img-event">
+                    </td>
 
                     <td>
                         <button class="btn btn-success btn-sm me-1 edit-button" data-bs-toggle="modal"
@@ -112,6 +124,9 @@ body { background-color: #0b1b3a; }
             </div>
             <div class="modal-body">
                 <form action="tambah_admin.php"method="POST" enctype="multipart/form-data">
+                <div class="mb-2 text-center">
+                    <img id="editGambarPreview" src="" width="150" class="img-thumbnail d-none">
+                </div>
                     <input type="hidden" name="id" id="id">
                     <div class="mb-2">
                         <label>Judul</label>
@@ -150,20 +165,20 @@ body { background-color: #0b1b3a; }
         const editButtons = document.querySelectorAll('.edit-button');
         editButtons.forEach(button => {
             button.addEventListener('click', function () {
-                const judul = this.getAttribute('data-judul');
-                const tanggal = this.getAttribute('data-tanggal');
-                const waktu = this.getAttribute('data-waktu');
-                const tempat = this.getAttribute('data-tempat');
-                const deskripsi = this.getAttribute('data-deskripsi');
-                const gambar = this.getAttribute('data-gambar');
 
-
-                document.getElementById('edit-judul').value = judul;
-                document.getElementById('edit-tanggal').value = tanggal;
-                document.getElementById('edit-waktu').value = waktu;
-                document.getElementById('edit-tempat').value = tempat;
-                document.getElementById('edit-deskripsi').value = deskripsi;
-                document.getElementById('edit-gambar').value = gambar;
+                document.getElementById('judul').value = this.dataset.judul;
+                document.getElementById('tanggal').value = this.dataset.tanggal;
+                document.getElementById('waktu').value = this.dataset.waktu;
+                document.getElementById('tempat').value = this.dataset.tempat;
+                document.getElementById('deskripsi').value = this.dataset.deskripsi;
+                
+                const preview = document.getElementById('editGambarPreview');
+                if (this.dataset.gambar) {
+                preview.src = 'upload/' + this.dataset.gambar;
+                preview.classList.remove('d-none');
+                } else {
+                preview.classList.add('d-none');
+                }
             });
         });
     });
