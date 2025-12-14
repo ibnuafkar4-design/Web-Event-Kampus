@@ -66,11 +66,10 @@ $query = mysqli_query($koneksi, "SELECT * FROM admin ORDER BY id DESC");
                 </div>
                 <div class="modal-body text-center">
                     <img id="detailImg" src="" class="img-fluid rounded mb-3" style="height:300px;object-fit:cover;">
-                    <p><strong><i class="fa-regular fa-calendar"></i> Tanggal:</strong> <?php echo $data['tanggal']; ?>
+                    <p><strong><i class="fa-regular fa-calendar"></i> Tanggal:</strong> <span id="detailDate"></span>
                     </p>
-                    <p><strong><i class="fa-regular fa-clock"></i> Waktu:</strong> <?php echo $data['waktu']; ?></p>
-                    <p><strong><i class="fa-solid fa-location-dot"></i> Tempat:</strong> <?php echo $data['tempat']; ?>
-                    </p>
+                    <p><strong><i class="fa-regular fa-clock"></i> Waktu:</strong> <span id="detailTime"></span></p>
+                    <p><strong><i class="fa-solid fa-location-dot"></i> Tempat:</strong> <span id="detailPlace"></span></p>
                     <p id="detailDesc"></p>
 
                 </div>
