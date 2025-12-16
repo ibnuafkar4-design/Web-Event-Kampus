@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = mysqli_real_escape_string($koneksi, $_POST['username']);
         $password = mysqli_real_escape_string($koneksi, $_POST['password']);
 
-        $sql = "SELECT * FROM admin WHERE username='$username' AND password='$password'";
+        $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
         $data = mysqli_query($koneksi, $sql);
 
         if (!$data) {
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (mysqli_num_rows($data) > 0) {
             $row = mysqli_fetch_assoc($data);
             $_SESSION['username'] = $row['username'];
-            header("Location: /PBL/admindashboard.php");
+            header("Location: admindashboard.php");
             exit();
         } else {
             $error = "Username atau password salah.";
