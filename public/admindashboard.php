@@ -1,4 +1,7 @@
 <?php
+include 'koneksi.php';
+
+
 session_start();
 if (!isset($_SESSION['username'])) {
     header("Location: login.php");
@@ -13,7 +16,7 @@ if (!isset($_SESSION['username'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard Event</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body {
@@ -36,9 +39,7 @@ if (!isset($_SESSION['username'])) {
     <nav class="navbar navbar-dark fixed-top shadow" style="background-color:#0b1b3a;">
         <div class="container-fluid">
             <!-- Tombol sidebar -->
-            <button class="btn btn-outline-light me-3"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasSidebar">
+            <button class="btn btn-outline-light me-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar">
                 <i class="fa-solid fa-bars"></i>
             </button>
 
@@ -96,31 +97,28 @@ if (!isset($_SESSION['username'])) {
                 $query = mysqli_query($koneksi, "SELECT * FROM admin");
                 $no = 1;
                 while ($data = mysqli_fetch_assoc($query)) {
-                ?>
+                    ?>
                     <tr>
-                        <td><?= $no++; ?></td>
-                        <td><?= $data['judul']; ?></td>
-                        <td><?= $data['tanggal']; ?></td>
-                        <td><?= $data['waktu']; ?></td>
-                        <td><?= $data['tempat']; ?></td>
-                        <td><?= $data['deskripsi']; ?></td>
-                        <td><img src="uploads/<?= $data['foto']; ?>" alt="Foto" width="100"></td>
+                        <td align="left"><?= $no++; ?></td>
+                        <td align="left"><?= $data['judul']; ?></td>
+                        <td align="left"><?= $data['tanggal']; ?></td>
+                        <td align="left"><?= $data['waktu']; ?></td>
+                        <td align="left"><?= $data['tempat']; ?></td>
+                        <td align="justify"><?= $data['deskripsi']; ?></td>
+                        <td><img src="uploads/<?= $data['foto']; ?>" alt="Foto" width="0"></td>
 
                         <td>
-                            <button class="btn btn-warning btn-edit"
-                                data-bs-target="#eventModal"
-                                data-bs-toggle="modal"
-                                data-judul="<?= $data['judul']; ?>"
-                                data-tanggal="<?= $data['tanggal']; ?>"
-                                data-waktu="<?= $data['waktu']; ?>"
-                                data-tempat="<?= $data['tempat']; ?>"
-                                data-deskripsi="<?= $data['deskripsi']; ?>"
+                            <button class="btn btn-warning btn-edit" data-id="<?= $data['id']; ?>"
+                                data-bs-target="#eventModal" data-bs-toggle="modal" data-judul="<?= $data['judul']; ?>"
+                                data-tanggal="<?= $data['tanggal']; ?>" data-waktu="<?= $data['waktu']; ?>"
+                                data-tempat="<?= $data['tempat']; ?>" data-deskripsi="<?= $data['deskripsi']; ?>"
                                 data-foto="<?= $data['foto']; ?>">
                                 <i class="fas fa-edit"></i> EDIT
                             </button>
 
-                            <a href="hapus_admin.php?id=<?= $data['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')"><i class="fas fa-trash-alt"></i> DELETE</a>
-                            </a>
+                            <a href="hapus_admin.php?id=<?= $data['id']; ?>" class="btn btn-danger btn-sm"
+                                onclick="return confirm('Yakin ingin menghapus data ini?')"><i class="fas fa-trash-alt"></i>
+                                DELETE</a>
                         </td>
                     </tr>
                 <?php } ?>
@@ -140,6 +138,7 @@ if (!isset($_SESSION['username'])) {
                     <form action="tambah_admin.php" method="POST" enctype="multipart/form-data">
                         <div class="mb-2 text-center">
                         </div>
+                        <img id="fotoPreview" class="img-fluid mb-2" style="max-height:250px";>
                         <input type="hidden" name="id" id="id">
                         <div class="mb-2">
                             <label>Judul</label>
@@ -170,31 +169,49 @@ if (!isset($_SESSION['username'])) {
                 </div>
             </div>
         </div>
+
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-                    document.querySelectorAll('.btn-edit').forEach(button => {
-                        button.addEventListener('click', function() {
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.btn-edit').forEach(button => {
+                button.addEventListener('click', function () {
 
-                            // isi data ke modal
-                            document.getElementById('judul').value = this.dataset.judul;
-                            document.getElementById('tanggal').value = this.dataset.tanggal;
-                            document.getElementById('waktu').value = this.dataset.waktu;
-                            document.getElementById('tempat').value = this.dataset.tempat;
-                            document.getElementById('deskripsi').value = this.dataset.deskripsi;
+                    // isi data ke modal
+                    document.getElementById('id').value = this.dataset.id;
+                    document.getElementById('judul').value = this.dataset.judul;
+                    document.getElementById('tanggal').value = this.dataset.tanggal;
+                    document.getElementById('waktu').value = this.dataset.waktu;
+                    document.getElementById('tempat').value = this.dataset.tempat;
+                    document.getElementById('deskripsi').value = this.dataset.deskripsi;
 
-                            // Preview Foto
-                            const fotoPath = this.dataset.foto ? `uploads/${this.dataset.foto}` : '';
-                            const fotoPreview = document.getElementById('editFotoPreview');
-                            fotoPreview.src = fotoPath;
-                            fotoPreview.style.display = fotoPath ? 'block' : 'none';
+                    const fotoPreview = document.getElementById('fotoPreview');
+                    const fotoPath = this.dataset.foto ? `uploads/${this.dataset.foto}` : '';
+                    fotoPreview.src = fotoPath;
+                    fotoPreview.style.display = fotoPath ? 'block' : 'none';
 
-                        });
-                    });
-                })
+
+                });
+            });
+        })
+    </script>
+    <script>
+        document.getElementById('btnAdd').addEventListener('click', function () {
+            document.getElementById('id').value = '';
+            document.getElementById('judul').value = '';
+            document.getElementById('tanggal').value = '';
+            document.getElementById('waktu').value = '';
+            document.getElementById('tempat').value = '';
+            document.getElementById('deskripsi').value = '';
+
+            const fotoPreview = document.getElementById('fotoPreview');
+            if (fotoPreview) fotoPreview.style.display = 'none';
+        });
+
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
