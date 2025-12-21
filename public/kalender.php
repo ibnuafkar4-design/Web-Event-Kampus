@@ -3,7 +3,7 @@ include __DIR__ . "/../app/koneksi2.php";
 
 
 
-// ambil bulan dan tahun dari URLekarang
+//ambil bulan dan tahun dari URL
 $bulan = $_GET['bulan'] ?? date('m');
 $tahun = $_GET['tahun'] ?? date('Y');
 
@@ -27,7 +27,7 @@ $query_event = mysqli_query(
 );
 
 while ($baris_event = mysqli_fetch_assoc($query_event)) {
-    $tanggal_event = date('j', strtotime($baris_event['tanggal']));
+    $tanggal_event = date('d', strtotime($baris_event['tanggal']));
     $data_event[$tanggal_event][] = $baris_event;
 }
 
@@ -49,6 +49,10 @@ $jumlah_hari  = cal_days_in_month(
     <title>Kalender Event Kampus</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+    th {
+        width: 200px;
+    }
+
     a {
         text-shadow: 0 0 10px #ff3cac;
     }
@@ -85,10 +89,18 @@ $jumlah_hari  = cal_days_in_month(
 
     .event-kampus {
         background: #14204b;
-        color: #fff;
+        color: #ff3cac;
         font-size: 12px;
-        max-height: 50px;
+        max-height: auto;
 
+    }
+
+    footer {
+        background-color: #08132a;
+        color: #ccc;
+        text-align: center;
+        padding: 15px;
+        margin-top: 40px;
     }
     </style>
 </head>
@@ -119,15 +131,13 @@ $jumlah_hari  = cal_days_in_month(
 
         <!-- Navigasi bulan -->
         <div class="d-flex justify-content-between mb-3">
-            <a class="btn btn-sm btn-secondary" href="?bulan=<?= $bulan - 1 ?>&tahun=<?= $tahun ?>">
-                ‹ Sebelumnya</a>
+            <a class="btn btn-sm btn-secondary" href="?bulan=<?= $bulan - 1 ?>&tahun=<?= $tahun ?>">‹ Sebelumnya</a>
 
             <strong>
                 <?= date('F Y', strtotime("$tahun-$bulan-01")) ?>
             </strong>
 
-            <a class="btn btn-sm btn-secondary" href="?bulan=<?= $bulan + 1 ?>&tahun=<?= $tahun ?>">
-                Berikutnya ›</a>
+            <a class="btn btn-sm btn-secondary" href="?bulan=<?= $bulan + 1 ?>&tahun=<?= $tahun ?>">Berikutnya ›</a>
         </div>
 
         <table class="table table-bordered text-center">
@@ -143,8 +153,8 @@ $jumlah_hari  = cal_days_in_month(
 
             <tr>
                 <?php
-// space sebelum hari pertama
-for ($i = 0; $i < $hari_pertama; $i++) {
+// baris kosong sebelum hari pertama 
+for ($spasi = 0; $spasi < $hari_pertama; $spasi++) {
     echo "<td></td>";
 }
 
@@ -164,8 +174,6 @@ for ($tanggal = 1; $tanggal <= $jumlah_hari; $tanggal++) {
         }
     }
 
-    echo "</td>";
-
     //tiap 1 minggu pindah baris
     if (($tanggal + $hari_pertama) % 7 == 0) {
         echo "</tr><tr>";
@@ -176,6 +184,16 @@ for ($tanggal = 1; $tanggal <= $jumlah_hari; $tanggal++) {
             </tr>
         </table>
 
+    </div>
+    <div class="footer">
+        <footer id="contact">
+            <p>Whatsapp:</p><br>
+            <p>+62 82289691770</p>
+            <p>Team:</p><br>
+            <p>-Jastin Reja</p><br>
+            <p>-Anisya Miftahul Jannah</p><br>
+            <p>-Ibnu Aqhila Afkar</p>
+        </footer>
     </div>
 </body>
 
