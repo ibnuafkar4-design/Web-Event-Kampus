@@ -12,11 +12,22 @@
       font-weight: bold;
     }
 
-    .carousel-item img {
-      height: 90vh;
-      object-fit: contain;
-      filter: brightness(60%);
-    }
+    #heroCarousel {
+  background: #000;
+}
+
+.carousel-inner,
+.carousel-item {
+  height: 90vh;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(60%);
+}
+
 
     .scroll-wrapper {
       display: flex;
