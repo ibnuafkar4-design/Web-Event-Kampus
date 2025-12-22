@@ -127,7 +127,7 @@ $jumlah_hari  = cal_days_in_month(CAL_GREGORIAN, $bulan, $tahun);
             <a class="btn btn-sm btn-secondary" href="?bulan=<?= $bulan - 1 ?>&tahun=<?= $tahun ?>">‹ Sebelumnya</a>
 
             <strong>
-                <?= date('F Y', strtotime("$tahun-$bulan-01")) ?>
+                <?= date('M Y', strtotime("$tahun-$bulan")) ?>
             </strong>
 
             <a class="btn btn-sm btn-secondary" href="?bulan=<?= $bulan + 1 ?>&tahun=<?= $tahun ?>">Berikutnya ›</a>

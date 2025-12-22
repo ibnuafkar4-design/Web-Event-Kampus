@@ -14,6 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $password = mysqli_real_escape_string($koneksi, $_POST['password']);
 
         $sql = "SELECT * FROM admin1 WHERE username='$username' AND password='$password'";
+   
+
         $data = mysqli_query($koneksi, $sql);
 
         if (!$data) {
@@ -105,6 +107,5 @@ body {
 </body>
 
 
-</script>
 
 </html>
