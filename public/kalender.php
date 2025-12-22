@@ -1,11 +1,11 @@
 <?php
-include __DIR__ . "/../app/koneksi2.php";
+include __DIR__ . "/../database/koneksi2.php";
 
 
 
 //ambil bulan dan tahun dari URL
-$bulan = $_GET['bulan'] ?? date('m');
-$tahun = $_GET['tahun'] ?? date('Y');
+$bulan = isset($_GET['bulan']) ? $_GET['bulan'] : date('m');
+$tahun = isset($_GET['tahun']) ? $_GET['tahun'] : date('Y');
 
 //batasan bulan dari 1-12
 if ($bulan < 1) {
@@ -20,24 +20,17 @@ if ($bulan > 12) {
 //ambil data dari database
 $data_event = [];
 $query_event = mysqli_query(
-    $koneksi,
-    "SELECT * FROM admin
-     WHERE MONTH(tanggal) = '$bulan'
-     AND YEAR(tanggal) = '$tahun'"
+    $koneksi,"SELECT * FROM admin WHERE MONTH(tanggal) = '$bulan' AND YEAR(tanggal) = '$tahun'"
 );
 
 while ($baris_event = mysqli_fetch_assoc($query_event)) {
-    $tanggal_event = date('d', strtotime($baris_event['tanggal']));
+    $tanggal_event = date('j', strtotime($baris_event['tanggal']));
     $data_event[$tanggal_event][] = $baris_event;
 }
 
 //data kalender 
 $hari_pertama = date('w', strtotime("$tahun-$bulan-01"));
-$jumlah_hari  = cal_days_in_month(
-    CAL_GREGORIAN,
-    $bulan,
-    $tahun
-);
+$jumlah_hari  = cal_days_in_month(CAL_GREGORIAN, $bulan, $tahun);
 ?>
 
 
@@ -89,7 +82,7 @@ $jumlah_hari  = cal_days_in_month(
 
     .event-kampus {
         background: #14204b;
-        color: #ff3cac;
+        color: #ffffffff;
         font-size: 12px;
         max-height: auto;
 
@@ -166,8 +159,7 @@ for ($tanggal = 1; $tanggal <= $jumlah_hari; $tanggal++) {
     if (isset($data_event[$tanggal])) {
         foreach ($data_event[$tanggal] as $event) {
             echo "
-            <div class='event-kampus'>
-                {$event['judul']}<br>
+            <div class='event-kampus'>{$event['judul']}<br>
                 <small>" . date('H.i', strtotime($event['waktu'])) . " WIB | {$event['tempat']}</small>
             </div>";
 
