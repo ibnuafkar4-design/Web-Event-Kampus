@@ -1,7 +1,6 @@
 <?php
 include __DIR__ . "/../database/koneksi2.php";
-
-
+$keyword = isset($_GET['search']) ? $_GET['search'] : '';
 
 //ambil bulan dan tahun dari URL
 $bulan = isset($_GET['bulan']) ? $_GET['bulan'] : date('m');
@@ -46,27 +45,22 @@ $jumlah_hari  = cal_days_in_month(CAL_GREGORIAN, $bulan, $tahun);
         width: 200px;
     }
 
-    a {
-        text-shadow: 0 0 10px #ff3cac;
-    }
-
     .navbar {
-        background-color: #101a39;
+        background-color: #0b0614;
         text-align: left;
     }
 
     .navbar-brand {
-        color: #ff3cac;
+        color: #a855f7;
         font-weight: bold;
     }
 
     h3 {
-        color: #ff3cac;
-        text-shadow: 0 0 10px #ff3cac;
+        color: #a855f7;
     }
 
     body {
-        background: #14204b;
+        background: #0b0614;
         font-family: Arial, sans-serif;
     }
 
@@ -76,20 +70,21 @@ $jumlah_hari  = cal_days_in_month(CAL_GREGORIAN, $bulan, $tahun);
     }
 
     strong {
-        color: #ff3cac;
-        text-shadow: 0 0 10px #ff3cac;
+        color: #a855f7;
     }
 
     .event-kampus {
-        background: #14204b;
+        background: #0b0614;
         color: #ffffffff;
         font-size: 12px;
         max-height: auto;
-
+        padding: 6px 8px;
+        margin-top: 5px;
+        border-radius: 10px;
     }
 
     footer {
-        background-color: #08132a;
+        background-color: #0b0614;
         color: #ccc;
         text-align: center;
         padding: 15px;
@@ -98,54 +93,54 @@ $jumlah_hari  = cal_days_in_month(CAL_GREGORIAN, $bulan, $tahun);
     </style>
 </head>
 
-<body>
-    <nav class="navbar navbar-dark navbar-expand sticky-top">
-        <div class="container-fluid">
-            <div class="d-flex me-auto" id="searchContainer" role="search">
-                <input class="form-control me-2" type="text" name="searchBar" id="searchBar"
-                    placeholder="Search for a event" aria-label="Search">
-                <button class="btn btn-outline-light" type="button" id="btnSearch">Search</button>
-            </div>
-        </div>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <a class="navbar-brand" href="kalender.php"> Kalender</a>
-            <a class="navbar-brand" href="landingpage.php"> Home</a>
-            <a class="navbar-brand" href="dashboardusers.php"> Events</a>
-            <a class="navbar-brand" href="#contact"> Contact</a>
-            <img src="logopolibatam.jpg" alt="Logo" width="40" height="40" class="d-inline-block align-text-top">
-
-        </div>
-    </nav>
-    <div class="container mt-4">
+<nav class="navbar navbar-expand navbar-dark sticky-top px-3">
 
 
-        <h3 class="text-center">Kalender Event Kampus</h3>
+    <div class="d-flex align-items-center">
+        <img src="logopolibatam.jpg" alt="logo" width="45" class="me-3">
 
-        <!-- Navigasi bulan -->
-        <div class="d-flex justify-content-between mb-3">
-            <a class="btn btn-sm btn-secondary" href="?bulan=<?= $bulan - 1 ?>&tahun=<?= $tahun ?>">‹ Sebelumnya</a>
+        <a class="navbar-brand me-3" href="landingpage.php">Home</a>
+        <a class="navbar-brand me-3" href="dashboardusers.php">Events</a>
+        <a class="navbar-brand me-3" href="#contact">Kontak</a>
+        <a class="navbar-brand me-3" href="kalender.php">Kalender</a>
+    </div>
+    <form method="GET" class="d-flex ms-auto me-3" style="width: 320px;">
+        <input class="form-control me-2" type="text" name="search" placeholder="event / YYYY-MM-DD"
+            value="<?= htmlspecialchars($keyword) ?>">
+        <button class="btn btn-outline-light" style="width:80px;">Search</button>
+    </form>
 
-            <strong>
-                <?= date('M Y', strtotime("$tahun-$bulan")) ?>
-            </strong>
+</nav>
 
-            <a class="btn btn-sm btn-secondary" href="?bulan=<?= $bulan + 1 ?>&tahun=<?= $tahun ?>">Berikutnya ›</a>
-        </div>
+<div class="container mt-4">
 
-        <table class="table table-bordered text-center">
-            <tr>
-                <th>Minggu</th>
-                <th>Senin</th>
-                <th>Selasa</th>
-                <th>Rabu</th>
-                <th>Kamis</th>
-                <th>Jumat</th>
-                <th>Sabtu</th>
-            </tr>
 
-            <tr>
-                <?php
+    <h3 class="text-center">Kalender Event Kampus</h3>
+
+    <div class="d-flex justify-content-between mb-3">
+        <a class="btn btn-sm btn-secondary" href="?bulan=<?= $bulan - 1 ?>&tahun=<?= $tahun ?>">‹ Sebelumnya</a>
+
+        <strong>
+            <?= date('M Y', strtotime("$tahun-$bulan")) ?>
+        </strong>
+
+        <a class="btn btn-sm btn-secondary" href="?bulan=<?= $bulan + 1 ?>&tahun=<?= $tahun ?>">Berikutnya ›</a>
+    </div>
+
+    <table class="table table-bordered text-center">
+        <tr>
+            <th>Minggu</th>
+            <th>Senin</th>
+            <th>Selasa</th>
+            <th>Rabu</th>
+            <th>Kamis</th>
+            <th>Jumat</th>
+            <th>Sabtu</th>
+        </tr>
+
+        <tr>
+            <?php
 // baris kosong sebelum hari pertama 
 for ($spasi = 0; $spasi < $hari_pertama; $spasi++) {
     echo "<td></td>";
@@ -154,7 +149,7 @@ for ($spasi = 0; $spasi < $hari_pertama; $spasi++) {
 // loop tanggal
 for ($tanggal = 1; $tanggal <= $jumlah_hari; $tanggal++) {
 
-    echo "<td><b>$tanggal</b>";
+    echo "<td align=\"left\"><b>$tanggal</b>";
 
     if (isset($data_event[$tanggal])) {
         foreach ($data_event[$tanggal] as $event) {
@@ -162,31 +157,46 @@ for ($tanggal = 1; $tanggal <= $jumlah_hari; $tanggal++) {
             <div class='event-kampus'>{$event['judul']}<br>
                 <small>" . date('H.i', strtotime($event['waktu'])) . " WIB | {$event['tempat']}</small>
             </div>";
-
         }
     }
+
+    echo "</td>";
+
+    if (($tanggal + $hari_pertama) % 7 == 0) {
+        echo "</tr><tr>";
+    }
+}
+
+// TAMBAHAN AGAR FULL
+$total_sel = $hari_pertama + $jumlah_hari;
+$sisa_sel = $total_sel % 7;
+
+if ($sisa_sel != 0) {
+    $sel_kosong = 7 - $sisa_sel;
+    for ($i = 0; $i < $sel_kosong; $i++) {
+        echo "<td></td>";
+    }
+}
 
     //tiap 1 minggu pindah baris
     if (($tanggal + $hari_pertama) % 7 == 0) {
         echo "</tr><tr>";
     }
-    
-}
 ?>
-            </tr>
-        </table>
+        </tr>
+    </table>
 
-    </div>
-    <div class="footer">
-        <footer id="contact">
-            <p>Whatsapp:</p><br>
-            <p>+62 82289691770</p>
-            <p>Team:</p><br>
-            <p>-Jastin Reja</p><br>
-            <p>-Anisya Miftahul Jannah</p><br>
-            <p>-Ibnu Aqhila Afkar</p>
-        </footer>
-    </div>
+</div>
+<div class="footer">
+    <footer id="contact">
+        <p>Whatsapp:</p><br>
+        <p>+62 82289691770</p>
+        <p>Team:</p><br>
+        <p>-Jastin Reja</p><br>
+        <p>-Anisya Miftahul Jannah</p><br>
+        <p>-Ibnu Aqhila Afkar</p>
+    </footer>
+</div>
 </body>
 
 </html>

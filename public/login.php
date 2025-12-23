@@ -14,8 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $password = mysqli_real_escape_string($koneksi, $_POST['password']);
 
         $sql = "SELECT * FROM admin1 WHERE username='$username' AND password='$password'";
-   
-
         $data = mysqli_query($koneksi, $sql);
 
         if (!$data) {
@@ -48,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <style>
 body {
-    background: linear-gradient(135deg, #0b1b3a, #1a2b5e);
+    background: linear-gradient(135deg, #000207ff, #32053cff);
     color: white;
     font-family: 'Poppins', sans-serif;
     display: flex;
@@ -58,7 +56,7 @@ body {
 }
 
 .card {
-    background-color: #14204b;
+    background-color: rgb(0, 0, 0);
     border: none;
     width: 380px;
     box-shadow: 0 0 20px rgba(255, 60, 172, 0.4);
@@ -71,30 +69,30 @@ body {
 }
 
 .form-control:focus {
-    box-shadow: 0 0 10px #ff3cac;
+    box-shadow: 0 0 10px #32053cff;
     background-color: #fbfbfb;
 }
 
 .btn-custom {
-    background: #ff3cac;
+    background: #32053cff;
     color: white;
     border: none;
     transition: 0.3s;
 }
 
 .btn-custom:hover {
-    background: #ff5fb2;
+    background: #51187aff;
 }
 </style>
 
 <body>
     <div class="card p-4 text-light">
         <h3 class="text-center mb-3">
-            <i class="fa-solid fa-bolt text-warning me-2"></i>Admin Panel
+            <i class="fa-solid text-warning me-2"></i>Polibatam Event
         </h3>
         <form id="loginForm" method="POST" action="login.php">
             <h5 class="text-center mb-3">
-                <i class="fa-solid fa-right-to-bracket me-2"></i>Login Admin
+                <i class="fa-solid me-2"></i>Login Admin
             </h5>
             <input type="text" name="username" class="form-control mb-3" id="username" placeholder="Username atau Email"
                 required />
@@ -107,5 +105,6 @@ body {
 </body>
 
 
+</script>
 
 </html>
