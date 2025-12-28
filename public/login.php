@@ -94,7 +94,7 @@ body {
         </h3>
         <form id="loginForm" method="POST" action="login.php">
             <h5 class="text-center mb-3">
-                <i class="fa-solid fa-right-to-bracket me-2"></i>Login Admin
+                <i class="fa-solid fa-key me-2"></i>Login Admin
             </h5>
             <input type="text" name="username" class="form-control mb-3" id="username" placeholder="Username atau Email"
                 required />
