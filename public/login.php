@@ -1,6 +1,6 @@
 <?php
 session_start();
-include __DIR__ . '/../database/koneksi2.php'; 
+include __DIR__ . '/../app/koneksi2.php'; 
 
 $error = "";
 
@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = mysqli_real_escape_string($koneksi, $_POST['username']);
         $password = mysqli_real_escape_string($koneksi, $_POST['password']);
 
-        $sql = "SELECT * FROM admin1 WHERE username='$username' AND password='$password'";
+        $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
         $data = mysqli_query($koneksi, $sql);
 
         if (!$data) {
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <style>
 body {
-    background: linear-gradient(135deg, #000207ff, #32053cff);
+    background: linear-gradient(135deg, #0b1b3a, #1a2b5e);
     color: white;
     font-family: 'Poppins', sans-serif;
     display: flex;
@@ -56,7 +56,7 @@ body {
 }
 
 .card {
-    background-color: rgb(0, 0, 0);
+    background-color: #14204b;
     border: none;
     width: 380px;
     box-shadow: 0 0 20px rgba(255, 60, 172, 0.4);
@@ -69,26 +69,26 @@ body {
 }
 
 .form-control:focus {
-    box-shadow: 0 0 10px #32053cff;
+    box-shadow: 0 0 10px #ff3cac;
     background-color: #fbfbfb;
 }
 
 .btn-custom {
-    background: #32053cff;
+    background: #ff3cac;
     color: white;
     border: none;
     transition: 0.3s;
 }
 
 .btn-custom:hover {
-    background: #51187aff;
+    background: #ff5fb2;
 }
 </style>
 
 <body>
     <div class="card p-4 text-light">
         <h3 class="text-center mb-3">
-            <i class="fa-solid text-warning me-2"></i>Polibatam Event
+            <i class="fa-solid fa-bolt text-warning me-2"></i>Polibatam Event
         </h3>
         <form id="loginForm" method="POST" action="login.php">
             <h5 class="text-center mb-3">

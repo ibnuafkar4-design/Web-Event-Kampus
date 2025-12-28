@@ -179,7 +179,7 @@ $sisa_sel = $total_sel % 7;
 
 if ($sisa_sel != 0) {
     $sel_kosong = 7 - $sisa_sel;
-    for ($i = 0; $i < $sel_kosong; $i++) {
+    for ($sel = 0; $sel < $sel_kosong; $sel++) {
         echo "<td></td>";
     }
 }
