@@ -1,6 +1,7 @@
 <?php
-include __DIR__ . "/../database/koneksi2.php";
-$keyword = isset($_GET['search']) ? $_GET['search'] : '';
+include __DIR__ . "/../app/koneksi2.php";
+
+
 
 //ambil bulan dan tahun dari URL
 $bulan = isset($_GET['bulan']) ? $_GET['bulan'] : date('m');
@@ -41,8 +42,8 @@ $jumlah_hari  = cal_days_in_month(CAL_GREGORIAN, $bulan, $tahun);
     <title>Kalender Event Kampus</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-    th {
-        width: 200px;
+    a {
+        text-shadow: 0 0 10px #ff3cac;
     }
 
     .navbar {
@@ -74,21 +75,11 @@ $jumlah_hari  = cal_days_in_month(CAL_GREGORIAN, $bulan, $tahun);
     }
 
     .event-kampus {
-        background: #0b0614;
-        color: #ffffffff;
+        background: #14204b;
+        color: #fff;
         font-size: 12px;
-        max-height: auto;
-        padding: 6px 8px;
-        margin-top: 5px;
-        border-radius: 10px;
-    }
+        max-height: 50px;
 
-    footer {
-        background-color: #0b0614;
-        color: #ccc;
-        text-align: center;
-        padding: 15px;
-        margin-top: 40px;
     }
     </style>
 </head>
@@ -118,14 +109,17 @@ $jumlah_hari  = cal_days_in_month(CAL_GREGORIAN, $bulan, $tahun);
 
     <h3 class="text-center">Kalender Event Kampus</h3>
 
+    <!-- Navigasi bulan -->
     <div class="d-flex justify-content-between mb-3">
-        <a class="btn btn-sm btn-secondary" href="?bulan=<?= $bulan - 1 ?>&tahun=<?= $tahun ?>">‹ Sebelumnya</a>
+        <a class="btn btn-sm btn-secondary" href="?bulan=<?= $bulan - 1 ?>&tahun=<?= $tahun ?>">
+            ‹ Sebelumnya</a>
 
         <strong>
-            <?= date('M Y', strtotime("$tahun-$bulan")) ?>
+            <?= date('F Y', strtotime("$tahun-$bulan-01")) ?>
         </strong>
 
-        <a class="btn btn-sm btn-secondary" href="?bulan=<?= $bulan + 1 ?>&tahun=<?= $tahun ?>">Berikutnya ›</a>
+        <a class="btn btn-sm btn-secondary" href="?bulan=<?= $bulan + 1 ?>&tahun=<?= $tahun ?>">
+            Berikutnya ›</a>
     </div>
 
     <table class="table table-bordered text-center">
@@ -141,8 +135,8 @@ $jumlah_hari  = cal_days_in_month(CAL_GREGORIAN, $bulan, $tahun);
 
         <tr>
             <?php
-// baris kosong sebelum hari pertama 
-for ($spasi = 0; $spasi < $hari_pertama; $spasi++) {
+// space sebelum hari pertama
+for ($i = 0; $i < $hari_pertama; $i++) {
     echo "<td></td>";
 }
 
@@ -162,22 +156,6 @@ for ($tanggal = 1; $tanggal <= $jumlah_hari; $tanggal++) {
 
     echo "</td>";
 
-    if (($tanggal + $hari_pertama) % 7 == 0) {
-        echo "</tr><tr>";
-    }
-}
-
-// TAMBAHAN AGAR FULL
-$total_sel = $hari_pertama + $jumlah_hari;
-$sisa_sel = $total_sel % 7;
-
-if ($sisa_sel != 0) {
-    $sel_kosong = 7 - $sisa_sel;
-    for ($i = 0; $i < $sel_kosong; $i++) {
-        echo "<td></td>";
-    }
-}
-
     //tiap 1 minggu pindah baris
     if (($tanggal + $hari_pertama) % 7 == 0) {
         echo "</tr><tr>";
@@ -186,16 +164,6 @@ if ($sisa_sel != 0) {
         </tr>
     </table>
 
-</div>
-<div class="footer">
-    <footer id="contact">
-        <p>Whatsapp:</p><br>
-        <p>+62 82289691770</p>
-        <p>Team:</p><br>
-        <p>-Jastin Reja</p><br>
-        <p>-Anisya Miftahul Jannah</p><br>
-        <p>-Ibnu Aqhila Afkar</p>
-    </footer>
 </div>
 </body>
 
