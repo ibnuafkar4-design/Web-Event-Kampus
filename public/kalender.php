@@ -1,7 +1,5 @@
 <?php
-include __DIR__ . "/../database/koneksi2.php";
-
-
+include 'koneksi.php';
 
 //ambil bulan dan tahun dari URL
 $bulan = isset($_GET['bulan']) ? $_GET['bulan'] : date('m');
@@ -85,7 +83,9 @@ $jumlah_hari  = cal_days_in_month(CAL_GREGORIAN, $bulan, $tahun);
         color: #ffffffff;
         font-size: 12px;
         max-height: auto;
-
+        padding: 6px 8px;
+        margin-top: 5px;
+        border-radius: 10px;
     }
 
     footer {
@@ -103,7 +103,7 @@ $jumlah_hari  = cal_days_in_month(CAL_GREGORIAN, $bulan, $tahun);
         <div class="container-fluid">
             <div class="d-flex me-auto" id="searchContainer" role="search">
                 <input class="form-control me-2" type="text" name="searchBar" id="searchBar"
-                    placeholder="Search for a event" aria-label="Search">
+                    placeholder="Search for an event" aria-label="Search">
                 <button class="btn btn-outline-light" type="button" id="btnSearch">Search</button>
             </div>
         </div>
@@ -172,6 +172,22 @@ for ($tanggal = 1; $tanggal <= $jumlah_hari; $tanggal++) {
     }
     
 }
+
+// TAMBAHAN AGAR FULL
+$total_sel = $hari_pertama + $jumlah_hari;
+$sisa_sel = $total_sel % 7;
+
+if ($sisa_sel != 0) {
+    $sel_kosong = 7 - $sisa_sel;
+    for ($sel = 0; $sel < $sel_kosong; $sel++) {
+        echo "<td></td>";
+    }
+}
+
+    //tiap 1 minggu pindah baris
+    if (($tanggal + $hari_pertama) % 7 == 0) {
+        echo "</tr><tr>";
+    }
 ?>
             </tr>
         </table>

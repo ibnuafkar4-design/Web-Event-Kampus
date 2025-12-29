@@ -45,48 +45,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="assets/logregotplupapw.css" rel="stylesheet" />
 </head>
 <style>
-
 body {
-  background: linear-gradient(135deg, #0b1b3a, #1a2b5e);
-  color: white;
-  font-family: 'Poppins', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+    background: linear-gradient(135deg, #0b1b3a, #1a2b5e);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .card {
-  background-color: #14204b;
-  border: none;
-  width: 380px;
-  box-shadow: 0 0 20px rgba(255, 60, 172, 0.4);
+    background-color: #14204b;
+    border: none;
+    width: 380px;
+    box-shadow: 0 0 20px rgba(255, 60, 172, 0.4);
 }
 
 .form-control {
-  background-color: #ffffff;
-  border: none;
-  color: rgb(0, 0, 0);
+    background-color: #ffffff;
+    border: none;
+    color: rgb(0, 0, 0);
 }
 
 .form-control:focus {
-  box-shadow: 0 0 10px #ff3cac;
-  background-color: #fbfbfb;
+    box-shadow: 0 0 10px #ff3cac;
+    background-color: #fbfbfb;
 }
 
 .btn-custom {
-  background: #ff3cac;
-  color: white;
-  border: none;
-  transition: 0.3s;
+    background: #ff3cac;
+    color: white;
+    border: none;
+    transition: 0.3s;
 }
 
 .btn-custom:hover {
-  background: #ff5fb2;
+    background: #ff5fb2;
 }
-
-
 </style>
+
 <body>
     <div class="card p-4 text-light">
         <h3 class="text-center mb-3">
@@ -94,7 +92,7 @@ body {
         </h3>
         <form id="loginForm" method="POST" action="login.php">
             <h5 class="text-center mb-3">
-                <i class="fa-solid fa-right-to-bracket me-2"></i>Login Admin
+                <i class="fa-solid fa-key me-2"></i>Login Admin
             </h5>
             <input type="text" name="username" class="form-control mb-3" id="username" placeholder="Username atau Email"
                 required />
