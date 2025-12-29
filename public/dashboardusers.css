@@ -1,16 +1,33 @@
-    body {
-      background-color: #0b1b3a;
-      color: white;
-      font-family: Arial, sans-serif;
+.navbar {
+        background-color: #101a39;
+        text-align: left;
     }
-    .navbar {
-      background-color: #101a39;
-      text-align: left;
-    }
+
     .navbar-brand {
-      color: #ff3cac;
-      font-weight: bold;
+        color: #ff3cac;
+        font-weight: bold;
     }
+
+    h3 {
+        color: #ff3cac;
+        text-shadow: 0 0 10px #ff3cac;
+    }
+
+    body {
+        background: #14204b;
+        font-family: Arial, sans-serif;
+    }
+
+    td {
+        height: 130px;
+        vertical-align: top;
+    }
+
+    strong {
+        color: #ff3cac;
+        text-shadow: 0 0 10px #ff3cac;
+    }
+
 
     #heroCarousel {
   background: #000;
@@ -82,14 +99,26 @@
       background-color: #0084ff;
     }
 
-    footer {
-      background-color: #08132a;
-      color: #ccc;
-      text-align: center;
-      padding: 15px;
-      margin-top: 40px;
-    }
-
     .navbar-brand {
       text-shadow: #0099ff 0px 0px 5px;
     }
+
+  /* ================= FOOTER ================= */
+.footer-dashboard {
+  background: linear-gradient(180deg, #0b1f3a, #102c54);
+  color: #fff;
+}
+
+.footer-dashboard a {
+  text-decoration: none;
+  color: #f8f9fa;
+}
+
+.footer-dashboard a:hover {
+  color: #ffc107;
+}
+
+.footer-links a {
+  font-size: 14px;
+  color: #ddd;
+}

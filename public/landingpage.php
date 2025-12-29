@@ -13,7 +13,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #0b1b3a;
+  background-color: #020203ff;
   color: white;
   overflow: hidden;
   font-family: "Poppins", sans-serif;
@@ -51,7 +51,7 @@ body {
   position: absolute !important;
   width: 100%;
   height: 100vh;
-  background: linear-gradient(to top,rgba(11, 27, 58, 0.9),rgba(11, 27, 58, 0.6));
+  background: linear-gradient(to top,rgba(31, 2, 30, 0.6),rgba(26, 1, 25, 0.6));
   z-index: 1;
 }
 
@@ -85,7 +85,7 @@ body {
   color: #dcdcdc;
 }
 .btn {
-  background-color: #ff3cac;
+  background-color: #4a044aff;
   color: white;
   border-radius: 30px;
   padding: 8px 20px;
@@ -98,8 +98,8 @@ body {
 
 
 .btn:hover {
-  background-color: #0b1b3a;
-  color: #ff3cac;
+  background-color: #6e1772ff;
+  color: #dcdcdc;
 }
 
 </style>
@@ -154,14 +154,14 @@ body {
     <div class="main-content">
         <img src="https://www.polibatam.ac.id/wp-content/uploads/2024/01/cropped-cropped-01_Logo_1_Utama_Polibatam_Vertikal@2x.png"
             alt="Polibatam Logo" />
-        <h1>Web Event Polibatam Official</h1>
+        <h1>Website Event Politeknik Negeri Batam Official</h1>
         <p>
             Politeknik Negeri Batam adalah kampus vokasi unggulan di Kepulauan Riau
             yang berfokus pada pendidikan berbasis industri dan teknologi terapan.
             Di sini, mahasiswa tidak hanya belajar teori tapi juga menciptakan
             solusi nyata melalui kolaborasi, inovasi, dan semangat untuk berkarya.
         </p>
-        <a href="dashboardusers.php" id="button" class="btn btn-primary btn-lg mt-3">Lihat Events</a>
+        <a href="dashboardusers.php" id="button" class="btn btn-lg mt-3">Lihat Events</a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
