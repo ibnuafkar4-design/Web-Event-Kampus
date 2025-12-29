@@ -172,7 +172,8 @@ while ($row = mysqli_fetch_assoc($query)) {
         <a href="#"
            class="btn btn-warning fw-semibold px-4">
           CONTACT & SERVICE
-        </a>
+        </a><br>
+        <a href="login.php" class="text-dark me-3">Admin</a>
       </div>
 
     </div>
@@ -187,6 +188,10 @@ while ($row = mysqli_fetch_assoc($query)) {
         <a href="#" class="me-3 text-warning"><i class="fab fa-instagram"></i></a>
         <a href="#" class="me-3 text-warning"><i class="fab fa-youtube"></i></a>
         <a href="#" class="text-warning"><i class="fab fa-twitter"></i></a>
+      </div>
+
+      <div class="footer-copyright">
+        © 2025 IFPagi1D-7.
       </div>
 
     </div>
