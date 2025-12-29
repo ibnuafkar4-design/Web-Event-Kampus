@@ -146,7 +146,7 @@ if (!isset($_SESSION['username'])) {
                                 data-id="<?= $data['id']; ?>"
                                 data-judul="<?= $data['judul']; ?>"
                                 data-tanggal="<?= $data['tanggal']; ?>"
-                                data-waktu="<?= $data['tanggal']; ?>"
+                                data-waktu="<?= $data['waktu']; ?>"
                                 data-tempat="<?= $data['tempat']; ?>"
                                 data-deskripsi="<?= $data['deskripsi']; ?>"
                                 data-foto="<?= $data['foto']; ?>"> 
