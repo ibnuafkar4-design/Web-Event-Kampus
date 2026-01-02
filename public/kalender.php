@@ -39,6 +39,7 @@ $jumlah_hari  = cal_days_in_month(CAL_GREGORIAN, $bulan, $tahun);
     <meta charset="UTF-8">
     <title>Kalender Event Kampus</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
     th {
         width: 200px;
@@ -90,7 +91,6 @@ $jumlah_hari  = cal_days_in_month(CAL_GREGORIAN, $bulan, $tahun);
 
     footer {
         background-color: #08132a;
-        color: #ccc;
         text-align: center;
         padding: 15px;
         margin-top: 40px;
@@ -99,30 +99,22 @@ $jumlah_hari  = cal_days_in_month(CAL_GREGORIAN, $bulan, $tahun);
 </head>
 
 <body>
-    <nav class="navbar navbar-dark navbar-expand sticky-top">
-        <div class="container-fluid">
-            <div class="d-flex me-auto" id="searchContainer" role="search">
-                <input class="form-control me-2" type="text" name="searchBar" id="searchBar"
-                    placeholder="Search for a event" aria-label="Search">
-                <button class="btn btn-outline-light" type="button" id="btnSearch">Search</button>
-            </div>
-        </div>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <a class="navbar-brand" href="kalender.php"> Kalender</a>
-            <a class="navbar-brand" href="landingpage.php"> Home</a>
-            <a class="navbar-brand" href="dashboardusers.php"> Events</a>
-            <a class="navbar-brand" href="#contact"> Contact</a>
-            <img src="logopolibatam.jpg" alt="Logo" width="40" height="40" class="d-inline-block align-text-top">
-
+    <nav class="navbar navbar-dark sticky-top">
+        <div class="container-fluid d-flex justify-content-end align-items-center">
+            <a class="navbar-brand" href="kalender.php">Kalender</a>
+            <a class="navbar-brand" href="landingpage.php">Home</a>
+            <a class="navbar-brand" href="dashboardusers.php">Events</a>
+            <a class="navbar-brand" href="#contact">Contact</a>
+            <img src="logopolibatam.jpg" alt="Logo" width="40" height="40">
         </div>
     </nav>
+
     <div class="container mt-4">
 
 
         <h3 class="text-center">Kalender Event Kampus</h3>
 
-        <!-- Navigasi bulan -->
+        <!--navigasi bulan-->
         <div class="d-flex justify-content-between mb-3">
             <a class="btn btn-sm btn-secondary" href="?bulan=<?= $bulan - 1 ?>&tahun=<?= $tahun ?>">‹ Sebelumnya</a>
 
@@ -193,16 +185,49 @@ if ($sisa_sel != 0) {
         </table>
 
     </div>
-    <div class="footer">
-        <footer id="contact">
-            <p>Whatsapp:</p><br>
-            <p>+62 82289691770</p>
-            <p>Team:</p><br>
-            <p>-Jastin Reja</p><br>
-            <p>-Anisya Miftahul Jannah</p><br>
-            <p>-Ibnu Aqhila Afkar</p>
-        </footer>
-    </div>
+    <footer class="footer-dashboard mt-5" id="contact">
+        <div class="container py-4">
+            <div class="row align-items-start">
+
+                <!-- KIRI -->
+                <div class="col-md-4 text-light mb-3">
+                    <h6 class="fw-bold">Politeknik Negeri Batam</h6>
+                    <p class="mb-1">Jl. Ahmad Yani, Batam Center</p>
+                    <p class="mb-0">Kepulauan Riau</p>
+                </div>
+
+                <!-- TENGAH -->
+                <div class="col-md-4 text-light mb-3">
+                    <p class="mb-1"><i class="fa-solid fa-phone me-2"></i>+62 778 469858</p>
+                    <p class="mb-1"><i class="fa-solid fa-envelope me-2"></i>info@polibatam.ac.id</p>
+                    <p class="mb-0"><i class="fa-solid fa-globe me-2"></i>www.polibatam.ac.id</p>
+                </div>
+
+                <!-- KANAN -->
+                <div class="col-md-4 text-md-end">
+                    <a href="#" class="btn btn-warning fw-semibold px-4">
+                        CONTACT & SERVICE
+                    </a>
+                </div>
+
+            </div>
+
+            <hr class="border-secondary my-3">
+
+            <!-- BAWAH -->
+            <div class="d-flex flex-wrap justify-content-between align-items-center">
+
+                <div class="text-warning fs-5">
+                    <a href="#" class="me-3 text-warning"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="me-3 text-warning"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="me-3 text-warning"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="text-warning"><i class="fab fa-twitter"></i></a>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
 </body>
 
 </html>
