@@ -13,7 +13,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #020203ff;
+  background-color: #0b1b3a;
   color: white;
   overflow: hidden;
   font-family: "Poppins", sans-serif;
@@ -51,7 +51,7 @@ body {
   position: absolute !important;
   width: 100%;
   height: 100vh;
-  background: linear-gradient(to top,rgba(31, 2, 30, 0.6),rgba(26, 1, 25, 0.6));
+  background: linear-gradient(to top,rgba(11, 27, 58, 0.9),rgba(11, 27, 58, 0.6));
   z-index: 1;
 }
 
@@ -85,7 +85,7 @@ body {
   color: #dcdcdc;
 }
 .btn {
-  background-color: #4a044aff;
+  background-color: #ff3cac;
   color: white;
   border-radius: 30px;
   padding: 8px 20px;
@@ -98,8 +98,8 @@ body {
 
 
 .btn:hover {
-  background-color: #6e1772ff;
-  color: #dcdcdc;
+  background-color: #0b1b3a;
+  color: #ff3cac;
 }
 
 </style>
