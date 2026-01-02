@@ -39,17 +39,19 @@ while ($row = mysqli_fetch_assoc($query)) {
   <link href="dashboardusers.css" rel="stylesheet">
 
   <style>
-    .carousel,
     .carousel-inner,
-    .carousel-item {
-      height: 90vh;
-    }
-    .carousel-item img {
-      height: 90vh;
-      object-fit: contain;
-      filter: brightness(60%);
-    }
+.carousel-item {
+  height: 90vh;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: brightness(60%);
+}
   </style>
+
 </head>
 
 <body>
@@ -59,17 +61,18 @@ while ($row = mysqli_fetch_assoc($query)) {
         <div class="container-fluid">
             <div class="d-flex me-auto" id="searchContainer" role="search">
                 <input class="form-control me-2" type="text" name="searchBar" id="searchBar"
-                    placeholder="Search for a event"
+                    placeholder="Cari Event"
                     value="<?= htmlspecialchars($keyword) ?>" aria-label="Search">
-                <button class="btn btn-outline-light" type="button" id="btnSearch">Search</button>
+                <button class="btn btn-outline-light" type="submit" id="btnSearch">Cari</button>
             </div>
         </div>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <a class="navbar-brand" href="kalender.php"> Kalender</a>
-            <a class="navbar-brand" href="landingpage.php"> Home</a>
-            <a class="navbar-brand" href="dashboardusers.php"> Events</a>
-            <a class="navbar-brand" href="#contact"> Contact</a>
+            <a class="navbar-brand" href="landingpage.php">Beranda</a>
+            <a class="navbar-brand" href="dashboardusers.php">Event</a>
+            <a class="navbar-brand" href="#contact">Kontak</a>
+            <a class="navbar-brand" href="login.php">Login</a>
             <img src="logopolibatam.jpg" alt="Logo" width="40" height="40" class="d-inline-block align-text-top">
 
         </div>
@@ -113,7 +116,7 @@ while ($row = mysqli_fetch_assoc($query)) {
     <i class="fa-solid fa-star me-2"></i>List Event
   </h3>
 
-  <div class="scroll-wrapper d-flex flex-wrap gap-3 justify-content-center">
+  <div class="scroll-wrapper d-flex flex-wrap gap-3 justify-content-center text-light">
     <?php foreach ($events as $event): ?>
       <div class="event-card" data-bs-toggle="modal" data-bs-target="#modal<?= $event['id'] ?>">
         <img src="uploads/<?= $event['foto'] ?>">
@@ -172,8 +175,7 @@ while ($row = mysqli_fetch_assoc($query)) {
         <a href="#"
            class="btn btn-warning fw-semibold px-4">
           CONTACT & SERVICE
-        </a><br>
-        <a href="login.php" class="text-dark me-3">Admin</a>
+        </a>
       </div>
 
     </div>
@@ -199,5 +201,12 @@ while ($row = mysqli_fetch_assoc($query)) {
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.getElementById("btnSearch").addEventListener("click", function () {
+  const keyword = document.getElementById("searchBar").value;
+  window.location.href = "?search=" + encodeURIComponent(keyword);
+});
+
+</script>
 </body>
 </html>

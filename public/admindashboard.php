@@ -1,5 +1,5 @@
 <?php
-include 'koneksi.php';
+include '../app/koneksi2.php';
 
 session_start();
 if (!isset($_SESSION['username'])) {

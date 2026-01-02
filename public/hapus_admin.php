@@ -1,6 +1,6 @@
 <?php
 
-include 'koneksi.php';
+include '../app/koneksi2.php';
 $id = $_GET['id'];
 
 $query = mysqli_query($koneksi, "SELECT * FROM admin WHERE id = '$id'");

@@ -1,5 +1,5 @@
 <?php
-include 'koneksi.php';
+include '../app/koneksi2.php';
 $judul=$_POST['judul'];
 $tanggal=$_POST['tanggal'];
 $waktu=$_POST['waktu'];

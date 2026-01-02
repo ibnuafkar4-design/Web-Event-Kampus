@@ -1,5 +1,5 @@
 <?php
-include 'koneksi.php';
+include '../app/koneksi2.php';
 
 //ambil bulan dan tahun dari URL
 $bulan = isset($_GET['bulan']) ? $_GET['bulan'] : date('m');
@@ -89,12 +89,24 @@ $jumlah_hari  = cal_days_in_month(CAL_GREGORIAN, $bulan, $tahun);
         border-radius: 10px;
     }
 
-    footer {
-        background-color: #08132a;
-        text-align: center;
-        padding: 15px;
-        margin-top: 40px;
-    }
+    .footer-dashboard {
+  background: linear-gradient(180deg, #0b1f3a, #102c54);
+  color: #fff;
+}
+
+.footer-dashboard a {
+  text-decoration: none;
+  color: #f8f9fa;
+}
+
+.footer-dashboard a:hover {
+  color: #ffc107;
+}
+
+.footer-links a {
+  font-size: 14px;
+  color: #ddd;
+}
     </style>
 </head>
 
@@ -102,9 +114,10 @@ $jumlah_hari  = cal_days_in_month(CAL_GREGORIAN, $bulan, $tahun);
     <nav class="navbar navbar-dark sticky-top">
         <div class="container-fluid d-flex justify-content-end align-items-center">
             <a class="navbar-brand" href="kalender.php">Kalender</a>
-            <a class="navbar-brand" href="landingpage.php">Home</a>
-            <a class="navbar-brand" href="dashboardusers.php">Events</a>
-            <a class="navbar-brand" href="#contact">Contact</a>
+            <a class="navbar-brand" href="landingpage.php">Beranda</a>
+            <a class="navbar-brand" href="dashboardusers.php">Event</a>
+            <a class="navbar-brand" href="#contact">Kontak</a>
+            <a class="navbar-brand" href="login.php">Login</a>
             <img src="logopolibatam.jpg" alt="Logo" width="40" height="40">
         </div>
     </nav>
@@ -185,48 +198,54 @@ if ($sisa_sel != 0) {
         </table>
 
     </div>
-    <footer class="footer-dashboard mt-5" id="contact">
-        <div class="container py-4">
-            <div class="row align-items-start">
+    <!-- ================= FOOTER ================= -->
+<footer class="footer-dashboard mt-5" id="contact">
+  <div class="container py-4">
+    <div class="row align-items-start">
 
-                <!-- KIRI -->
-                <div class="col-md-4 text-light mb-3">
-                    <h6 class="fw-bold">Politeknik Negeri Batam</h6>
-                    <p class="mb-1">Jl. Ahmad Yani, Batam Center</p>
-                    <p class="mb-0">Kepulauan Riau</p>
-                </div>
+      <!-- KIRI -->
+      <div class="col-md-4 text-light mb-3">
+        <h6 class="fw-bold">Politeknik Negeri Batam</h6>
+        <p class="mb-1">Jl. Ahmad Yani, Batam Center</p>
+        <p class="mb-0">Kepulauan Riau</p>
+      </div>
 
-                <!-- TENGAH -->
-                <div class="col-md-4 text-light mb-3">
-                    <p class="mb-1"><i class="fa-solid fa-phone me-2"></i>+62 778 469858</p>
-                    <p class="mb-1"><i class="fa-solid fa-envelope me-2"></i>info@polibatam.ac.id</p>
-                    <p class="mb-0"><i class="fa-solid fa-globe me-2"></i>www.polibatam.ac.id</p>
-                </div>
+      <!-- TENGAH -->
+      <div class="col-md-4 text-light mb-3">
+        <p class="mb-1"><i class="fa-solid fa-phone me-2"></i>+62 778 469858</p>
+        <p class="mb-1"><i class="fa-solid fa-envelope me-2"></i>info@polibatam.ac.id</p>
+        <p class="mb-0"><i class="fa-solid fa-globe me-2"></i>www.polibatam.ac.id</p>
+      </div>
 
-                <!-- KANAN -->
-                <div class="col-md-4 text-md-end">
-                    <a href="#" class="btn btn-warning fw-semibold px-4">
-                        CONTACT & SERVICE
-                    </a>
-                </div>
+      <!-- KANAN -->
+      <div class="col-md-4 text-md-end">
+        <a href="#"
+           class="btn btn-warning fw-semibold px-4">
+          CONTACT & SERVICE
+        </a>
+      </div>
 
-            </div>
+    </div>
 
-            <hr class="border-secondary my-3">
+    <hr class="border-secondary my-3">
 
-            <!-- BAWAH -->
-            <div class="d-flex flex-wrap justify-content-between align-items-center">
+    <!-- BAWAH -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center">
 
-                <div class="text-warning fs-5">
-                    <a href="#" class="me-3 text-warning"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="me-3 text-warning"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="me-3 text-warning"><i class="fab fa-youtube"></i></a>
-                    <a href="#" class="text-warning"><i class="fab fa-twitter"></i></a>
-                </div>
+      <div class="text-warning fs-5">
+        <a href="#" class="me-3 text-warning"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="me-3 text-warning"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="me-3 text-warning"><i class="fab fa-youtube"></i></a>
+        <a href="#" class="text-warning"><i class="fab fa-twitter"></i></a>
+      </div>
 
-            </div>
-        </div>
-    </footer>
+      <div class="footer-copyright">
+        © 2025 IFPagi1D-7
+      </div>
+
+    </div>
+  </div>
+</footer>
 
 </body>
 

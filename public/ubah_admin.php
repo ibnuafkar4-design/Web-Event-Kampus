@@ -1,6 +1,6 @@
 <?php
 // include database connetion file
-include 'koneksi.php';
+include '../app/koneksi2.php';
     $id=$_POST['id'];
     $judul=$_POST['judul'];
     $tanggal=$_POST['tanggal'];

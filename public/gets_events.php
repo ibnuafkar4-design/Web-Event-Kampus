@@ -1,5 +1,5 @@
 <?php
-include "../app/configuser.php";
+include "../app/koneksi2.php";
 
 $query = mysqli_query($koneksi, "SELECT * FROM admin");
 
