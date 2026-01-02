@@ -51,6 +51,15 @@ if (!isset($_SESSION['username'])) {
 .nav-link.neon-hover:hover i {
     color: #ffc107;
 }
+
+/* Samakan ukuran tombol Edit & Hapus */
+.table td .btn {
+    width: 80px;          /* samakan lebar */
+    padding: 6px 0;       /* samakan tinggi */
+    font-size: 0.8rem;
+    text-align: center;
+}
+
     </style>
 </head>
 
@@ -93,7 +102,7 @@ if (!isset($_SESSION['username'])) {
         <div class="offcanvas-body">
             <ul class="nav flex-column fs-5">
                 <li class="nav-item mb-2">
-                    <a class="nav-link text-light neon-hover" href="landingpage.php"><i class="fa-solid fa-house"></i> Beranda</a>
+                    <a class="nav-link text-light neon-hover" href="landingpage.php"><i class="fa-solid fa-house"></i> Home</a>
                 </li>
                 <li class="nav-item mb-2">
                     <a class="nav-link text-light neon-hover" href="logout.php"><i class="fa-solid fa-right-from-bracket me-2"></i> Logout</a>
