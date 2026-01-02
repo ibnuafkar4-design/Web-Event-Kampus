@@ -88,7 +88,7 @@ body {
 <body>
     <div class="card p-4 text-light">
         <h3 class="text-center mb-3">
-            <i class="fa-solid fa-bolt text-warning me-2"></i>Polibatam Event
+            <i class="fa-solid text-warning me-2"></i>Polibatam Event
         </h3>
         <form id="loginForm" method="POST" action="login.php">
             <h5 class="text-center mb-3">

@@ -103,7 +103,7 @@ $jumlah_hari  = cal_days_in_month(CAL_GREGORIAN, $bulan, $tahun);
         <div class="container-fluid">
             <div class="d-flex me-auto" id="searchContainer" role="search">
                 <input class="form-control me-2" type="text" name="searchBar" id="searchBar"
-                    placeholder="Search for an event" aria-label="Search">
+                    placeholder="Search for a event" aria-label="Search">
                 <button class="btn btn-outline-light" type="button" id="btnSearch">Search</button>
             </div>
         </div>

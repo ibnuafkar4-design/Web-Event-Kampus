@@ -82,7 +82,7 @@ while ($row = mysqli_fetch_assoc($query)) {
     <?php if (count($events) > 0): ?>
       <?php foreach ($events as $i => $event): ?>
         <div class="carousel-item <?= $i === 0 ? 'active' : '' ?>">
-          <img src="upload/<?= $event['foto'] ?>" class="d-block w-100">
+          <img src="uploads/<?= $event['foto'] ?>" class="d-block w-100">
           <div class="carousel-caption bg-dark bg-opacity-50 rounded">
             <h5><?= $event['judul'] ?></h5>
             <p><?= $event['tanggal'] ?> • <?= $event['tempat'] ?></p>
@@ -116,7 +116,7 @@ while ($row = mysqli_fetch_assoc($query)) {
   <div class="scroll-wrapper d-flex flex-wrap gap-3 justify-content-center">
     <?php foreach ($events as $event): ?>
       <div class="event-card" data-bs-toggle="modal" data-bs-target="#modal<?= $event['id'] ?>">
-        <img src="upload/<?= $event['foto'] ?>">
+        <img src="uploads/<?= $event['foto'] ?>">
         <div class="event-info">
           <h5><?= $event['judul'] ?></h5>
           <p><?= $event['tanggal'] ?></p>
@@ -136,7 +136,7 @@ while ($row = mysqli_fetch_assoc($query)) {
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body text-center">
-        <img src="upload/<?= $event['foto'] ?>" class="img-fluid rounded mb-3"
+        <img src="uploads/<?= $event['foto'] ?>" class="img-fluid rounded mb-3"
              style="height:300px;object-fit:cover;">
         <p><strong>Tanggal:</strong> <?= $event['tanggal'] ?></p>
         <p><strong>Waktu:</strong> <?= $event['waktu'] ?></p>
@@ -191,7 +191,7 @@ while ($row = mysqli_fetch_assoc($query)) {
       </div>
 
       <div class="footer-copyright">
-        © 2025 IFPagi1D-7.
+        © 2025 IFPagi1D-7
       </div>
 
     </div>
