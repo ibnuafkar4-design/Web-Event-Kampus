@@ -28,23 +28,82 @@
         text-shadow: 0 0 10px #ff3cac;
     }
 
+    /* ===== MULTI POSTER CAROUSEL (7 POSTER) ===== */
 
-    #heroCarousel {
-  background: #000;
+#posterCarousel .carousel-item {
+    display: block;
 }
 
-.carousel-inner,
-.carousel-item {
-  height: 90vh;
+/* posisi dasar */
+#posterCarousel .carousel-item {
+    position: absolute;
+    top: 0;
+    left: 85%;
+    transform: translateX(-50%) scale(0.6);
+    opacity: 0;
+    transition: all 0.6s ease;
 }
 
-.carousel-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: brightness(60%);
+/* poster tengah */
+#posterCarousel .carousel-item.active {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+    z-index: 5;
 }
 
+/* kanan 1 */
+#posterCarousel .carousel-item.next {
+    transform: translateX(40%) scale(0.85);
+    opacity: 0.7;
+    z-index: 4;
+}
+
+/* kanan 2 */
+#posterCarousel .carousel-item.next + .carousel-item {
+    transform: translateX(130%) scale(0.7);
+    opacity: 0.5;
+    z-index: 3;
+}
+
+/* kanan 3 */
+#posterCarousel .carousel-item.next + .carousel-item + .carousel-item {
+    transform: translateX(220%) scale(0.6);
+    opacity: 0.3;
+    z-index: 2;
+}
+
+/* kiri 1 */
+#posterCarousel .carousel-item.prev {
+    transform: translateX(-140%) scale(0.85);
+    opacity: 0.7;
+    z-index: 4;
+}
+
+/* kiri 2 */
+#posterCarousel .carousel-item.prev-prev {
+    transform: translateX(-230%) scale(0.7);
+    opacity: 0.5;
+    z-index: 3;
+}
+
+/* kiri 3 */
+#posterCarousel .carousel-item.prev-prev-prev {
+    transform: translateX(-320%) scale(0.6);
+    opacity: 0.3;
+    z-index: 2;
+}
+
+/* blur poster samping */
+#posterCarousel .carousel-item:not(.active) img {
+    filter: blur(2px);
+}
+
+/* poster image */
+.poster-item img {
+    width: 300px;
+    border-radius: 18px;
+    box-shadow: 0 18px 35px rgba(0,0,0,0.35);
+}
 
     .scroll-wrapper {
       display: flex;
