@@ -219,7 +219,7 @@ if ($sisa_sel != 0) {
 
       <!-- KANAN -->
       <div class="col-md-4 text-md-end">
-        <a href="#"
+        <a href="https://wa.me/62895600308271"
            class="btn btn-warning fw-semibold px-4">
           CONTACT & SERVICE
         </a>
@@ -233,14 +233,14 @@ if ($sisa_sel != 0) {
     <div class="d-flex flex-wrap justify-content-between align-items-center">
 
       <div class="text-warning fs-5">
-        <a href="#" class="me-3 text-warning"><i class="fab fa-facebook"></i></a>
-        <a href="#" class="me-3 text-warning"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="me-3 text-warning"><i class="fab fa-youtube"></i></a>
-        <a href="#" class="text-warning"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/share/1CAhCEMLZT/" class="me-3 text-warning"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/polibatamofficial?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="me-3 text-warning"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/c/PolibatamTV/" class="me-3 text-warning"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqbUtXSWlQMUZzeXQ4Vkk0WTNkbGZkRzBidEZTZ3xBQ3Jtc0tsWTNXLXpSekpZZ0tkQnYtaFgydEFnOHQxOFhsanNrRUh5VFF5MkpqWHEwX3NyR0lDU1ltWXY5c2VVZmVHNU5Ya2psUU40YXpWMVZWWG96ZXpNZTNEWUJkUGhqUC1HVktZYmN2V0pRLUZGMnRNeWROSQ&q=https%3A%2F%2Ftwitter.com%2Fpolibatam_" class="text-warning"><i class="fab fa-twitter"></i></a>
       </div>
 
       <div class="footer-copyright">
-        © 2025 IFPagi1D-7
+       Copyright © 2025 IFPagi1D-7. All Right Reserved.
       </div>
 
     </div>
