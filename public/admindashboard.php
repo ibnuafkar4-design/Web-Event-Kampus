@@ -102,7 +102,7 @@ if (!isset($_SESSION['username'])) {
         <div class="offcanvas-body">
             <ul class="nav flex-column fs-5">
                 <li class="nav-item mb-2">
-                    <a class="nav-link text-light neon-hover" href="landingpage.php"><i class="fa-solid fa-house"></i> Home</a>
+                    <a class="nav-link text-light neon-hover" href="landingpage.php"><i class="fa-solid fa-house"></i> Beranda</a>
                 </li>
                 <li class="nav-item mb-2">
                     <a class="nav-link text-light neon-hover" href="logout.php"><i class="fa-solid fa-right-from-bracket me-2"></i> Logout</a>
@@ -138,7 +138,7 @@ if (!isset($_SESSION['username'])) {
             </thead>
             <tbody>
                 <?php
-                include 'koneksi.php';
+                include '../app/koneksi2.php';
                 $query = mysqli_query($koneksi, "SELECT * FROM admin");
                 $no = 1;
                 while ($data = mysqli_fetch_assoc($query)) { ?>
