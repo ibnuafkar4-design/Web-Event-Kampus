@@ -39,17 +39,86 @@ while ($row = mysqli_fetch_assoc($query)) {
   <link href="dashboardusers.css" rel="stylesheet">
 
   <style>
-    .carousel-inner,
-.carousel-item {
-  height: 90vh;
+/* ===== SLIDER ===== */
+
+.event-slider-wrapper {
+    width: 100%;
+    padding: 60px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.carousel-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: brightness(60%);
+.event-slider {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 10px calc(50% - 160px);
 }
+
+
+/* slide */
+.event-slide {
+    scroll-snap-align: center;
+    flex: 0 0 auto;
+    width: 320px;
+    position: relative;
+    transform: scale(0.85);
+    opacity: 0.5;
+    transition: 0.4s ease;
+    cursor: pointer;
+}
+
+.event-slide.active {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.event-slide img {
+    width: 100%;
+    border-radius: 18px;
+    box-shadow: 0 18px 35px rgba(0,0,0,0.35);
+}
+
+/* caption */
+.event-caption {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* panah */
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #0d6efd;
+    border: none;
+    color: #fff;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.slider-arrow.left { left: 10px; }
+.slider-arrow.right { right: 10px; }
+
+.slider-arrow:hover {
+    background: #0b5ed7;
+}
+
+/* hide scrollbar */
+.event-slider::-webkit-scrollbar { display: none; }
+.event-slider { scrollbar-width: none; }
+
   </style>
 
 </head>
@@ -78,37 +147,46 @@ while ($row = mysqli_fetch_assoc($query)) {
         </div>
     </nav>
 
-<!-- ================= CAROUSEL ================= -->
-<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
+<!-- ================= SLIDER CAROUSEL ================= -->
+<div class="event-slider-wrapper position-relative">
+
+  <!-- Panah kiri -->
+  <button class="slider-arrow left" id="prevSlide">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
+
+  <!-- Slider -->
+  <div class="event-slider" id="eventSlider">
 
     <?php if (count($events) > 0): ?>
-      <?php foreach ($events as $i => $event): ?>
-        <div class="carousel-item <?= $i === 0 ? 'active' : '' ?>">
-          <img src="uploads/<?= $event['foto'] ?>" class="d-block w-100">
-          <div class="carousel-caption bg-dark bg-opacity-50 rounded">
+      <?php foreach ($events as $event): ?>
+        <div class="event-slide"
+             data-bs-toggle="modal"
+             data-bs-target="#modal<?= $event['id'] ?>">
+          <img src="uploads/<?= $event['foto'] ?>" alt="<?= $event['judul'] ?>">
+          <div class="event-caption">
             <h5><?= $event['judul'] ?></h5>
             <p><?= $event['tanggal'] ?> • <?= $event['tempat'] ?></p>
           </div>
         </div>
       <?php endforeach; ?>
     <?php else: ?>
-      <div class="carousel-item active">
-        <div class="d-flex justify-content-center align-items-center h-100 text-light">
-          <h3>Tidak ada event</h3>
-        </div>
-      </div>
+      <p class="text-center text-light">Tidak ada event</p>
     <?php endif; ?>
 
   </div>
 
-  <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
+  <!-- Panah kanan -->
+  <button class="slider-arrow right" id="nextSlide">
+    <i class="fa-solid fa-chevron-right"></i>
   </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </button>
+
 </div>
+
+
+
+
+
 
 <!-- ================= CARD EVENT ================= -->
 <section class="container my-5">
@@ -172,7 +250,7 @@ while ($row = mysqli_fetch_assoc($query)) {
 
       <!-- KANAN -->
       <div class="col-md-4 text-md-end">
-        <a href="#"
+        <a href="https://wa.me/62895600308271"
            class="btn btn-warning fw-semibold px-4">
           CONTACT & SERVICE
         </a>
@@ -186,14 +264,14 @@ while ($row = mysqli_fetch_assoc($query)) {
     <div class="d-flex flex-wrap justify-content-between align-items-center">
 
       <div class="text-warning fs-5">
-        <a href="#" class="me-3 text-warning"><i class="fab fa-facebook"></i></a>
-        <a href="#" class="me-3 text-warning"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="me-3 text-warning"><i class="fab fa-youtube"></i></a>
-        <a href="#" class="text-warning"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/share/1CAhCEMLZT/" class="me-3 text-warning"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/polibatamofficial?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="me-3 text-warning"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/c/PolibatamTV/" class="me-3 text-warning"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqbUtXSWlQMUZzeXQ4Vkk0WTNkbGZkRzBidEZTZ3xBQ3Jtc0tsWTNXLXpSekpZZ0tkQnYtaFgydEFnOHQxOFhsanNrRUh5VFF5MkpqWHEwX3NyR0lDU1ltWXY5c2VVZmVHNU5Ya2psUU40YXpWMVZWWG96ZXpNZTNEWUJkUGhqUC1HVktZYmN2V0pRLUZGMnRNeWROSQ&q=https%3A%2F%2Ftwitter.com%2Fpolibatam_" class="text-warning"><i class="fab fa-twitter"></i></a>
       </div>
 
       <div class="footer-copyright">
-        © 2025 IFPagi1D-7
+       Copyright © 2025 IFPagi1D-7. All Right Reserved.
       </div>
 
     </div>
@@ -207,6 +285,91 @@ while ($row = mysqli_fetch_assoc($query)) {
   window.location.href = "?search=" + encodeURIComponent(keyword);
 });
 
+/* ===== SLIDER CAROUSEL ===== */
+const slider = document.getElementById("eventSlider");
+const slides = Array.from(document.querySelectorAll(".event-slide"));
+const nextBtn = document.getElementById("nextSlide");
+const prevBtn = document.getElementById("prevSlide");
+
+let autoSlide;
+
+/* ===== CARI SLIDE TENGAH ===== */
+function getCenterIndex() {
+  const sliderRect = slider.getBoundingClientRect();
+  const sliderCenter = sliderRect.left + sliderRect.width / 2;
+
+  let closestIndex = 0;
+  let minDistance = Infinity;
+
+  slides.forEach((slide, i) => {
+    const rect = slide.getBoundingClientRect();
+    const slideCenter = rect.left + rect.width / 2;
+    const distance = Math.abs(slideCenter - sliderCenter);
+
+    if (distance < minDistance) {
+      minDistance = distance;
+      closestIndex = i;
+    }
+  });
+
+  return closestIndex;
+}
+
+/* ===== AKTIF SLIDE ===== */
+function setActiveSlide() {
+  const activeIndex = getCenterIndex();
+
+  slides.forEach((slide, i) => {
+    slide.classList.toggle("active", i === activeIndex);
+  });
+}
+
+/* ===== SCROLL KE INDEX ===== */
+function scrollToIndex(index) {
+  const slide = slides[index];
+  const slideLeft = slide.offsetLeft;
+  const slideWidth = slide.offsetWidth;
+  const sliderWidth = slider.offsetWidth;
+  const targetScrollLeft = slideLeft - (sliderWidth / 2) + (slideWidth / 2);
+
+  slider.scrollTo({
+    left: targetScrollLeft,
+    behavior: 'smooth'
+  });
+}
+
+/* ===== PANAH ===== */
+nextBtn.onclick = () => {
+  const index = getCenterIndex();
+  if (index < slides.length - 1) scrollToIndex(index + 1);
+};
+
+prevBtn.onclick = () => {
+  const index = getCenterIndex();
+  if (index > 0) scrollToIndex(index - 1);
+};
+
+/* ===== AUTO SLIDE ===== */
+function startAuto() {
+  autoSlide = setInterval(() => {
+    const index = getCenterIndex();
+    if (index < slides.length - 1) {
+      scrollToIndex(index + 1);
+    } else {
+      scrollToIndex(0);
+    }
+  }, 4000);
+}
+
+startAuto();
+
+/* pause */
+slider.addEventListener("mouseenter", () => clearInterval(autoSlide));
+slider.addEventListener("mouseleave", startAuto);
+
+slider.addEventListener("scroll", setActiveSlide);
+window.addEventListener("load", setActiveSlide);
 </script>
+
 </body>
 </html>
